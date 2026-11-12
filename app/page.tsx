@@ -1,11 +1,13 @@
 import { AccessLine } from "@/components/access-line";
 import { Logo } from "@/components/brand/logo";
+import { PhoneSlot } from "@/components/phone";
+import { PhoneStepsDemo } from "@/components/sections/como-funciona/phone-steps-demo";
 import { SectionShell } from "@/components/sections/section-shell";
 
 /**
  * Página única do VIAS.
- * Etapa 1: estrutura das seções + demonstração do comportamento da
- * Linha de Acesso em cada ato da narrativa (spec §5).
+ * Estrutura provisória das seções: Linha de Acesso em cada ato da narrativa
+ * (Etapa 1) e o iPhone 3D no Hero e em Como funciona (Etapa 3).
  */
 export default function Home() {
   return (
@@ -13,18 +15,21 @@ export default function Home() {
       <main id="conteudo" tabIndex={-1} className="focus:outline-none">
         {/* 02 · Hero — contínua: sai da cidade e entra no celular */}
         <SectionShell id="inicio" headingLevel={1} heading="Saúde não é só encontrar. É conseguir chegar." stage="Etapa 3.1">
-          <AccessLine
-            width={1200}
-            height={220}
-            mode={{ type: "enter", duration: 1.8 }}
-            head
-            segments={[{ d: "M30 170 C 240 170, 300 60, 520 70 S 820 190, 980 120 S 1130 50, 1170 50" }]}
-            nodes={[
-              { x: 30, y: 170, kind: "origin" },
-              { x: 520, y: 70, kind: "junction" },
-              { x: 1170, y: 50, kind: "access" },
-            ]}
-          />
+          <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
+            <AccessLine
+              width={1200}
+              height={220}
+              mode={{ type: "enter", duration: 1.8 }}
+              head
+              segments={[{ d: "M30 170 C 240 170, 300 60, 520 70 S 820 190, 980 120 S 1130 50, 1170 50" }]}
+              nodes={[
+                { x: 30, y: 170, kind: "origin" },
+                { x: 520, y: 70, kind: "junction" },
+                { x: 1170, y: 50, kind: "access" },
+              ]}
+            />
+            <PhoneSlot screen="ui-01" priority className="w-64 justify-self-center lg:w-80" />
+          </div>
         </SectionShell>
 
         {/* 03 · O problema — fragmentada, com lacunas, não chega */}
@@ -62,6 +67,7 @@ export default function Home() {
               <li className="text-right">03 Percurso</li>
             </ol>
           </div>
+          <PhoneStepsDemo />
         </SectionShell>
 
         {/* 05 · Acessibilidade — variações contínua / tracejada */}

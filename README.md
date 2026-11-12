@@ -1,7 +1,7 @@
 # VIAS — Via Inteligente de Acesso à Saúde · Landing page
 
 Landing page imersiva do VIAS. Next.js (App Router) + TypeScript + Tailwind CSS v4 + GSAP (ScrollTrigger, SplitText, DrawSVG) + Lenis.
-O iPhone 3D (React Three Fiber) entra na Etapa 3.
+iPhone 3D com React Three Fiber + drei.
 
 ## Rodar
 
@@ -45,6 +45,21 @@ docs/                plano e decisões por etapa
 ```
 
 Sem JS ou com `prefers-reduced-motion`, a linha aparece completa e com todos os nós acesos.
+
+## iPhone 3D
+
+Um único canvas WebGL fixo (`PhoneCanvasMount`, no layout) desenha o iPhone em cada palco via `<View>` do drei.
+Nas seções, use o palco:
+
+```tsx
+<PhoneSlot screen="ui-01" priority />                       // Hero (primeira dobra)
+<PhoneSlot screen={tela} posterScreens={["ui-01", "ui-02", "ui-03"]} />
+```
+
+- Sempre mostra o poster (`public/posters/`, renderizado da própria cena 3D). O 3D entra por cima com crossfade.
+- Sem WebGL2, com `prefers-reduced-motion`, economia de dados ou aparelho fraco: fica só o poster.
+- Telas (`public/screens/`) e posters são indexados por `ui-01` a `ui-04` em `components/phone/phone-config.ts`.
+- three.js, R3F e drei ficam num chunk separado, carregado sob demanda.
 
 ## Créditos
 

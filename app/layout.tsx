@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
 
 import { Navbar } from "@/components/navbar/navbar";
+import { PhoneCanvasMount } from "@/components/phone";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
 
 import "./globals.css";
@@ -80,6 +81,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SmoothScroll>
           <Navbar />
           {children}
+          <PhoneCanvasMount />
         </SmoothScroll>
       </body>
     </html>

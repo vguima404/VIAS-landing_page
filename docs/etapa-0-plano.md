@@ -31,16 +31,16 @@ Composição geral: grid de 1440 px, texto à esquerda (≈ 45%) e visual à dir
 |---|---|---|
 | **02 Hero** | Título em 3 linhas, rótulo mono com traço, CTAs pílula, 3 destaques com divisores verticais. À direita, cidade aérea com rotas brilhantes, grande curva verde-pinho e folhagem desfocada nos cantos inferiores (primeiro plano, ótima camada de parallax). | Navbar ("Sobre o VIAS"…); "Baixar o app" → "Explorar demonstração →"; "unidade mais próxima" → "unidade adequada". |
 | **03 O problema** | Foto em diagonal, protagonista com o celular; 4 pílulas de pergunta empilhadas sobre a foto; mini mapa com pin e linha que **some** (fragmentada). | Logo antiga; estetoscópio em "Qual serviço?" → ícone de busca/lista. |
-| **04 Como funciona** | Numerais grandes 01/02/03 em cinza, linha que liga os três cartões, protagonista olhando para cima, curva verde-pinho na base. | "UBS Central", "1,2 km", "15 min" → "Unidade demonstrativa", "Mamógrafo cadastrado", "SUS"; 03 → "28 min · Ônibus + caminhada"; **foto da fachada no cartão sai** (sugere unidade real) e vira ícone de prédio; selo "Demonstração — dados ilustrativos". |
+| **04 Como funciona** | Numerais grandes 01/02/03 em cinza, linha que liga os três cartões, protagonista olhando para cima, curva verde-pinho na base. | "UBS Central", "1,2 km", "15 min" → "Unidade demonstrativa", "Mamógrafo cadastrado", "SUS"; 03 → "28 min · Ônibus + caminhada"; foto da fachada **mantida** (genérica, sem placa ou nome legível; decisão de 12/11); selo "Demonstração — dados ilustrativos". |
 | **05 Acessibilidade** | Foto do homem na estação com máscara em onda; lista com ícones circulares e trilho vertical com nó lima; cartão flutuante; faixa verde-pinho com mapa e rota no canto. | Cartão mostra tudo "confirmado" → trocar pelos 4 estados da UI-04 (Não informado ×2, Parcial, Informado) com ícone + texto + cor; botão "Ver informações de acessibilidade →". |
 | **06 Inteligência** | 4 placas de mapa empilhadas em perspectiva, ligadas pela linha lima vertical; cartões laterais ligados por fios com nó; mapa do território na base. | Cruz médica (01 Saúde) → prédio; cérebro (04) → ícone de rede/nós. |
-| **07 Gestores** | Fundo verde-pinho com território em mapa coroplético isométrico, rede de rotas com nós, 3 painéis de vidro escuro, destaque com pin. | Pins com cruz → prédio; painéis sem números; legenda vermelho/amarelo/verde → escala da marca (ver §7). |
+| **07 Gestores** | Fundo verde-pinho com território em mapa coroplético isométrico, rede de rotas com nós, 3 painéis de vidro escuro, destaque com pin. | Pins com cruz → prédio; painéis sem números; legenda **mantida em vermelho/amarelo/verde**, como na imagem (decisão de 12/11). |
 | **08 Confiança** | Foto quente (senhora em casa), cartão branco, anotações 01/02/03 à direita com fios finos e nós. **É a única referência com a linha de progresso no estilo pedido** (borda da navbar com ponto lima). | Números "01/02/03" em lima → verde-rota. |
 | **09 CTA + footer** | Duas fotos sangrando nas laterais com centro Papel, nó central que se bifurca até os dois botões, footer verde-pinho com "VIAS" gigante cortado. | Logo antiga; incluir links e textos da spec. |
 
 **Navbar:** cada imagem traz uma diferente. Sigo a da 02 (links centrais + botão contorno), com a borda inferior da 08 (linha com ponto lima) como linha de progresso.
 
-**Seções escuras:** a referência da 09 tem o CTA **claro** e só o footer escuro. Proponho: navbar escura sobre 07 e sobre o footer; no CTA, clara (fiel à imagem). A troca é automática por `data-theme="dark"` nas seções.
+**Seções escuras:** a referência da 09 tem o CTA **claro** e só o footer escuro. Decidido (12/11): navbar escura sobre a 07 e sobre o footer; no CTA, clara, fiel à imagem. Sobre fundo escuro, o trecho percorrido da linha de progresso fica em lima, como na imagem 07.
 
 ---
 
@@ -168,12 +168,12 @@ docs/
 | 03 Problema | Foto revela por máscara diagonal + zoom-out; as 4 perguntas surgem uma a uma; a linha do mini mapa se desenha **com lacunas** e para no meio. | Não |
 | 04 Como funciona | Sticky curto (~2 telas): etapas 01→02→03 acendem, os fragmentos da 03 se unem nos 3 nós, e o iPhone troca UI-01→02→03. | Sim, curto |
 | 05 Acessibilidade | Itens do cartão entram com o estado (ícone, texto, cor) em sequência; a rota no canto ganha trechos contínuos e tracejados. | Não |
-| 06 Inteligência | As 4 placas (CSS 3D) começam separadas e se alinham com o scroll; a linha vertical atravessa e acende os nós de cada cartão. | Sim, curto |
+| 06 Inteligência | As 4 placas (imagens em perspectiva, nas posições exatas da referência) começam separadas e se alinham com o scroll; a linha vertical atravessa e acende os nós de cada cartão. | Sim, curto |
 | 07 Gestores | Navbar escurece; território com parallax lento; rede de rotas se desenha; painéis entram em sequência. | Não |
 | 08 Confiança | Os 3 fios das anotações se desenham um a um até os itens do cartão. | Não |
 | 09 CTA | Linha nasce no nó central e se bifurca até os dois botões; fotos laterais com parallax; footer com "VIAS" gigante subindo levemente. | Não |
 
-Linha de progresso: um nó por seção (02–09) e portal no fim. Escala da 07 (Alta/Média/Baixa) com tons da marca (pinho → verde-rota → lima) mais padrão (hachura) para não depender só da cor.
+Linha de progresso: um nó por seção (02–09) e portal no fim. Escala da 07 (Alta/Média/Baixa) em vermelho/amarelo/verde, como na referência, sempre com o texto ao lado.
 
 ---
 
@@ -184,27 +184,29 @@ Linha de progresso: um nó por seção (02–09) e portal no fim. Escala da 07 (
 - **Camadas de uma mesma seção no mesmo canvas e alinhadas** (se sobrepostas, recompõem a cena).
 - **Fundo com "clean plate":** a área atrás da pessoa preenchida (sem buraco), porque o parallax revela essa área.
 - Recortes com alpha limpo, inclusive cabelo.
-- Margem de ~10% em todas as bordas (o parallax desloca as camadas).
+- **Enquadramento idêntico ao da referência**, em 2× (3344×1882), com ~10% de sobra além dessa área em todas as bordas (o parallax desloca as camadas; a sobra nunca muda o enquadramento visível).
 - Sujeito numa área segura central, para o recorte vertical do mobile funcionar.
 - Mesma protagonista (rosto, cabelo, roupa) em 03, 04 e 09.
 
 | # | Seção | Arquivo(s) | Formato / tamanho |
 |---|---|---|---|
-| A1 | 02 Hero | Cidade aérea **sem rotas e sem pins** (só cidade, rio e vegetação) | PNG, 3200×2000 |
+| A1 | 02 Hero | Cidade aérea **sem rotas e sem pins** (só cidade, rio e vegetação) | PNG, 3344×1882 + sobra (ver regras) |
 | A2 | 02 Hero | Céu/horizonte e nuvens separados da cidade (opcional, para profundidade) | PNG com alpha, mesmo canvas |
 | A3 | 02 Hero | Folhagem desfocada de primeiro plano (cantos inferiores) | PNG com alpha, mesmo canvas |
 | A4 | 02 Hero | **Guia (não publicado):** a mesma cidade **com** as rotas, para eu traçar o SVG alinhado às ruas | PNG, mesmo canvas |
-| B1 | 03 Problema | Fundo: estação/ponto de ônibus, sem a pessoa (clean plate) | PNG, 3200×2000 |
+| B1 | 03 Problema | Fundo: estação/ponto de ônibus, sem a pessoa (clean plate) | PNG, 3344×1882 + sobra (ver regras) |
 | B2 | 03 Problema | Protagonista recortada (com bolsa e celular) | PNG com alpha, mesmo canvas |
-| C1 | 04 Como funciona | Fundo: árvores e prédio, sem a pessoa | PNG, 3200×2000 |
+| C1 | 04 Como funciona | Fundo: árvores e prédio, sem a pessoa | PNG, 3344×1882 + sobra (ver regras) |
 | C2 | 04 Como funciona | Protagonista recortada olhando para cima | PNG com alpha, mesmo canvas |
-| D1 | 05 Acessibilidade | Fundo: estação, sem a pessoa | PNG, 3200×2000 |
+| C3 | 04 Como funciona | Foto da fachada para o cartão 02: unidade genérica, **sem placa, nome ou logotipo legível**, enquadrada como na referência | PNG, 800×640 |
+| D1 | 05 Acessibilidade | Fundo: estação, sem a pessoa | PNG, 3344×1882 + sobra (ver regras) |
 | D2 | 05 Acessibilidade | Homem em cadeira de rodas recortado | PNG com alpha, mesmo canvas |
-| E1–E4 | 06 Inteligência | As 4 placas **vistas de cima, chapadas, sem perspectiva**: 01 saúde (pontos/quadras), 02 mobilidade (linhas), 03 território (quadras/edificações), 04 base escura. Eu aplico a perspectiva em CSS 3D, o que permite separar e alinhar no scroll com bordas nítidas. | PNG, 2048×2048 cada |
+| E1–E4 | 06 Inteligência | As 4 placas **em perspectiva, exatamente como na referência**, cada uma num PNG separado com fundo transparente e no mesmo canvas (sobrepostas, recompõem a imagem): 01 saúde, 02 mobilidade, 03 território, 04 base escura com o alvo. Sem pins, linha lima nem cartões (eu desenho em SVG/HTML). | PNG com alpha, 3344×1882 (2× a referência) |
 | E5 | 06 Inteligência | Mapa do território da base (terreno verde que some no Papel) | PNG, 3200×1400 |
-| F1 | 07 Gestores | Fundo aéreo escuro (verde-pinho dessaturado) | PNG, 3200×2000 |
-| F2 | 07 Gestores | Território coroplético **visto de cima, chapado**, sem pins nem rotas (eu inclino em CSS e desenho rede e pins por cima) | PNG com alpha, 2400×2400 |
-| G1 | 08 Confiança | Fundo: sala com janela e plantas, sem a pessoa | PNG, 3200×2000 |
+| F1 | 07 Gestores | Fundo aéreo escuro (verde-pinho dessaturado) | PNG, 3344×1882 + sobra (ver regras) |
+| F2 | 07 Gestores | Território coroplético **em perspectiva, como na referência**, sem pins, rotas nem painéis (eu desenho por cima, alinhado à imagem) | PNG com alpha, 3344×1882, mesmo canvas da F1 |
+| F3 | 07 Gestores | **Guia (não publicado):** o mesmo território **com** rotas e pins, para eu alinhar o SVG | PNG, mesmo canvas |
+| G1 | 08 Confiança | Fundo: sala com janela e plantas, sem a pessoa | PNG, 3344×1882 + sobra (ver regras) |
 | G2 | 08 Confiança | Senhora recortada com o celular | PNG com alpha, mesmo canvas |
 | G3 | 08 Confiança | Primeiro plano: mesa, caneca, bolsa, óculos | PNG com alpha, mesmo canvas |
 | H1 | 09 CTA | Protagonista caminhando: fundo de rua + recorte | 2 PNGs, 1800×2400 (retrato) |
@@ -216,6 +218,16 @@ Sobre o Hero: você tem o projeto Unreal `VIAS-City` e os takes renderizados. Se
 **Enquanto as imagens não chegam**, cada slot usa um placeholder neutro identificado ("FOTO — 03 protagonista no ponto"). O layout e as animações são construídos com as proporções finais.
 
 ---
+
+## 8.1 Regra de fidelidade (definida em 12/11)
+
+Cada seção tem de ser **visualmente igual à sua imagem de referência**: mesma composição, posições, tamanhos, enquadramento das fotos, cores e espaçamentos. O layout não é reinterpretado nem reorganizado; as animações entram por cima do resultado estático.
+
+- Só entram, sem perguntar, as correções que o prompt manda (logo oficial, navbar única da §6, dados demonstrativos, ícones lineares, texto em HTML), sempre no mesmo lugar e tamanho do elemento que substituem.
+- Qualquer outro afastamento, mesmo por motivo técnico, é perguntado antes.
+- **Verificação a cada etapa:** cada seção é medida na imagem de referência (1672×941) e conferida com captura de tela no mesmo tamanho, lado a lado e em sobreposição, antes da entrega.
+- **Mobile:** as referências são só de desktop. A versão mobile de cada seção é uma adaptação e será apresentada para aprovação.
+- **iPhone do Hero:** tamanho, ângulo e posição serão os da imagem 02; os posters serão gerados de novo nessa pose.
 
 ## 9. Decisões que preciso de você
 
