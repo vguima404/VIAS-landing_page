@@ -77,17 +77,20 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
       if (!target) return;
 
       event.preventDefault();
-      const offset = target === document.body ? 0 : -navOffset();
 
       if (lenis) {
+        // Pausado (ex.: menu mobile fechando): reativa antes, pois start()
+        // chamado depois cancelaria a rolagem em curso
+        if (lenis.isStopped) lenis.start();
+        // O Lenis já desconta o scroll-padding-top do <html> (= altura da navbar)
         lenis.scrollTo(target === document.body ? 0 : target, {
-          offset,
           duration: 1.2,
           easing: (t) => 1 - Math.pow(1 - t, 4),
           onComplete: () => focusTarget(target),
         });
       } else {
-        const top = target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY + offset;
+        // scrollTo por coordenada ignora o scroll-padding: desconta a navbar aqui
+        const top = target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY - navOffset();
         window.scrollTo({ top });
         focusTarget(target);
       }
