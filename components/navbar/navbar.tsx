@@ -4,7 +4,7 @@ import { useCallback, useRef, useState } from "react";
 
 import { Logo } from "@/components/brand/logo";
 import { ArrowRightIcon, MenuIcon } from "@/components/ui/icons";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { navHeight } from "@/lib/nav-height";
 import { navSections, sections, type SectionTheme } from "@/lib/sections";
 import { site } from "@/lib/site";
@@ -47,21 +47,21 @@ export function Navbar() {
       onToggle: (self) => setScrolled(self.isActive || self.progress >= 1),
     });
 
-    // Contraste: escuro enquanto uma seção escura passa sob a navbar
-    const underNav = new Set<Element>();
-    gsap.utils.toArray<HTMLElement>('[data-theme="dark"]').forEach((el) => {
-      if (header.contains(el)) return;
-      ScrollTrigger.create({
-        trigger: el,
-        start: () => `top ${navLine()}px`,
-        end: () => `bottom ${navLine()}px`,
-        onToggle: (self) => {
-          if (self.isActive) underNav.add(el);
-          else underNav.delete(el);
-          setTheme(underNav.size > 0 ? "dark" : "light");
-        },
+    // Contraste: escuro enquanto uma seção escura passa sob a navbar.
+    // A cada scroll/refresh consulta as seções escuras presentes no DOM (em vez
+    // de gatilhos presos aos elementos da montagem): continua certo se uma
+    // seção for remontada (ex.: recarga a quente) ou se o layout mudar com pins
+    const updateTheme = () => {
+      const y = navLine();
+      const dark = Array.from(document.querySelectorAll<HTMLElement>('[data-theme="dark"]')).some((el) => {
+        if (header.contains(el)) return false;
+        const r = el.getBoundingClientRect();
+        return r.top <= y && r.bottom > y;
       });
-    });
+      setTheme(dark ? "dark" : "light");
+    };
+    ScrollTrigger.create({ start: 0, end: "max", onUpdate: updateTheme, onRefresh: updateTheme });
+    updateTheme();
 
     // Seção ativa: a que cruza o meio da viewport. Seções presas (pin) são
     // medidas pelo espaçador, que inclui o trecho em que ficam paradas

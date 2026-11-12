@@ -34,7 +34,7 @@ Composição geral: grid de 1440 px, texto à esquerda (≈ 45%) e visual à dir
 | **04 Como funciona** | Numerais grandes 01/02/03 em cinza, linha que liga os três cartões, protagonista olhando para cima, curva verde-pinho na base. | "UBS Central", "1,2 km", "15 min" → "Unidade demonstrativa", "Mamógrafo cadastrado", "SUS"; 03 → "28 min · Ônibus + caminhada"; foto da fachada **mantida** (genérica, sem placa ou nome legível; decisão de 12/11); selo "Demonstração — dados ilustrativos". |
 | **05 Acessibilidade** | Foto do homem na estação com máscara em onda; lista com ícones circulares e trilho vertical com nó lima; cartão flutuante; faixa verde-pinho com mapa e rota no canto. | Cartão mostra tudo "confirmado" → trocar pelos 4 estados da UI-04 (Não informado ×2, Parcial, Informado) com ícone + texto + cor; botão "Ver informações de acessibilidade →". |
 | **06 Inteligência** | 4 placas de mapa empilhadas em perspectiva, ligadas pela linha lima vertical; cartões laterais ligados por fios com nó; mapa do território na base. | Cruz médica (01 Saúde) → prédio; cérebro (04) → ícone de rede/nós. |
-| **07 Gestores** | Fundo verde-pinho com território em mapa coroplético isométrico, rede de rotas com nós, 3 painéis de vidro escuro, destaque com pin. | Pins com cruz → prédio; painéis sem números; legenda **mantida em vermelho/amarelo/verde**, como na imagem (decisão de 12/11). |
+| **07 Gestores** | Fundo verde-pinho com território em mapa coroplético isométrico, rede de rotas com nós, 3 painéis de vidro escuro, destaque com pin. | Pins com cruz → prédio; painéis sem números; cartão de regiões refeito em SVG com hexágonos, escala sequencial Névoa → Verde-rota → Lima, legenda contínua e selo de demonstração (pedido de 12/11, substitui a decisão anterior de manter vermelho/amarelo/verde). |
 | **08 Confiança** | Foto quente (senhora em casa), cartão branco, anotações 01/02/03 à direita com fios finos e nós. **É a única referência com a linha de progresso no estilo pedido** (borda da navbar com ponto lima). | Números "01/02/03" em lima → verde-rota. |
 | **09 CTA + footer** | Duas fotos sangrando nas laterais com centro Papel, nó central que se bifurca até os dois botões, footer verde-pinho com "VIAS" gigante cortado. | Logo antiga; incluir links e textos da spec. |
 
@@ -200,9 +200,9 @@ Linha de progresso: um nó por seção (02–09) e portal no fim. Escala da 07 (
 | D2 | 05 Acessibilidade | Opcional, para parallax: homem em cadeira de rodas recortado, no mesmo quadro do D1 | PNG com alpha, 1672×941 |
 | E1–E4 | 06 Inteligência | **Substituído em 12/11 pelo vídeo fornecido** (camadas se erguendo sobre o mapa): `public/videos/06-camadas.mp4`, versão 1080p (reenviada em 12/11), acelerada 1,5× (5,3 s, 127 quadros, todos quadros-chave, sem áudio, 10 MB) e comandado pelo scroll durante o momento sticky. Último quadro em `public/images/inteligencia/06-camadas-final.webp` (sem JS, mobile e movimento reduzido). Alinhado à referência em escala 1,328, canto (−22; 4,6)u. | ✓ |
 | E5 | 06 Inteligência | Não é mais necessário: o mapa do território está no vídeo. | — |
-| F1 | 07 Gestores | Fundo aéreo escuro (verde-pinho dessaturado) | PNG, 3344×1882 + sobra (ver regras) |
-| F2 | 07 Gestores | Território coroplético **em perspectiva, como na referência**, sem pins, rotas nem painéis (eu desenho por cima, alinhado à imagem) | PNG com alpha, 3344×1882, mesmo canvas da F1 |
-| F3 | 07 Gestores | **Guia (não publicado):** o mesmo território **com** rotas e pins, para eu alinhar o SVG | PNG, mesmo canvas |
+| F1 | 07 Gestores | **Recebido em 12/11:** fundo completo (território, pins, rede de rotas e linhas lima), 1672×941, usado pixel a pixel. Arquivo: `public/images/gestores/07-gestores-fundo.webp`. | ✓ |
+| F2 | 07 Gestores | Não é mais necessário: o território está no F1. | — |
+| F3 | 07 Gestores | Não é mais necessário. | — |
 | G1 | 08 Confiança | Fundo: sala com janela e plantas, sem a pessoa | PNG, 3344×1882 + sobra (ver regras) |
 | G2 | 08 Confiança | Senhora recortada com o celular | PNG com alpha, mesmo canvas |
 | G3 | 08 Confiança | Primeiro plano: mesa, caneca, bolsa, óculos | PNG com alpha, mesmo canvas |

@@ -100,6 +100,21 @@
   --color-ref-cartao-texto-06: #1d312f;
   --color-ref-icone-06: #03291f;
   --color-ref-no-06: #b8d42a; /* nós e fios lima dos cartões (06) */
+  --color-ref-fundo-07: #062c23; /* fundo verde-pinho (07) */
+  --color-ref-rotulo-07: #dfe6b4; /* rótulo mono (07) */
+  --color-ref-texto-07: #f1f6f2; /* parágrafo (07) */
+  --color-ref-destaque-07: #b9c9bd; /* "o VIAS" no parágrafo (07) */
+  --color-ref-painel-07: #143c31; /* painéis de vidro escuro (07) */
+  --color-ref-pilula-07: #032820; /* destaque "Da jornada…" (07) */
+  --color-ref-fio-07: #889f65; /* fios dos painéis (07) */
+  --color-ref-alta-07: #3b9360; /* cobertura alta (07) */
+  --color-ref-media-07: #c6df93; /* cobertura média (07) */
+  --color-ref-baixa-07: #b0d3a2; /* cobertura baixa (07) */
+  --color-ref-lima-07: #c8e04a; /* pin, linha do gráfico e alerta (07) */
+  /* Escala sequencial do cartão de regiões (pedido de 12/11) */
+  --color-nevoa-escala: #e9efe7;
+  --color-rota-escala: #2d7c60;
+  --color-lima-escala: #d7f36a;
 
   /* Escala tipográfica fluida (referência: 1440 px) */
   --text-display: clamp(2.75rem, 1.15rem + 4.6vw, 5.5rem);
@@ -251,6 +266,9 @@
 }
 @utility u-px-* {
   padding-inline: calc(var(--u) * --value(number));
+}
+@utility u-py-* {
+  padding-block: calc(var(--u) * --value(number));
 }
 @utility u-pl-* {
   padding-left: calc(var(--u) * --value(number));

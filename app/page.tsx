@@ -2,6 +2,7 @@ import { AccessLine } from "@/components/access-line";
 import { Logo } from "@/components/brand/logo";
 import { Acessibilidade } from "@/components/sections/acessibilidade/acessibilidade";
 import { ComoFunciona } from "@/components/sections/como-funciona/como-funciona";
+import { Gestores } from "@/components/sections/gestores/gestores";
 import { Hero } from "@/components/sections/hero/hero";
 import { Inteligencia } from "@/components/sections/inteligencia/inteligencia";
 import { Problema } from "@/components/sections/problema/problema";
@@ -10,7 +11,7 @@ import { SectionShell } from "@/components/sections/section-shell";
 /**
  * Página única do VIAS.
  * 02 Hero (Etapa 3.1), 03 O problema (Etapa 4), 04 Como funciona (Etapa 5) e
- * 05 Acessibilidade (Etapa 6) e 06 Inteligência (Etapa 7): definitivos.
+ * 05 Acessibilidade (Etapa 6), 06 Inteligência (Etapa 7) e 07 Gestores (Etapa 8): definitivos.
  * Demais seções: estrutura provisória com a Linha de Acesso de cada ato (Etapa 1).
  */
 export default function Home() {
@@ -27,26 +28,7 @@ export default function Home() {
 
         <Inteligencia />
 
-        {/* 07 · Gestores — a linha vira rede (fundo escuro) */}
-        <SectionShell id="gestores" heading="O mapa também mostra onde chegar é mais difícil." stage="Etapa 8">
-          <AccessLine
-            width={1200}
-            height={240}
-            tone="dark"
-            track
-            segments={[
-              { d: "M30 200 C 240 200, 320 120, 520 120", from: 0, to: 0.4 },
-              { d: "M520 120 C 700 120, 760 40, 960 40 L 1170 40", from: 0.4, to: 1 },
-              { d: "M520 120 C 700 120, 780 200, 980 200 L 1170 200", from: 0.4, to: 1 },
-            ]}
-            nodes={[
-              { x: 30, y: 200, kind: "origin" },
-              { x: 520, y: 120, kind: "junction" },
-              { x: 1170, y: 40, kind: "access" },
-              { x: 1170, y: 200, kind: "access" },
-            ]}
-          />
-        </SectionShell>
+        <Gestores />
 
         {/* 08 · Confiança — linhas finas de anotação, uma a uma */}
         <SectionShell id="confianca" heading="Cada informação precisa mostrar o que sabe — e o que não sabe." stage="Etapa 9">
