@@ -227,3 +227,13 @@ export function NetworkIcon(props: IconProps) {
     </Base>
   );
 }
+
+/** "i" em círculo: aviso informativo */
+export function InfoIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5.5M12 7.6h.01" />
+    </Base>
+  );
+}

@@ -20,6 +20,7 @@ const REFERENCES: Record<string, string> = {
   acessibilidade: "05-acessibilidade.png",
   tecnologia: "06-inteligencia-integracao.png",
   gestores: "07-para-gestores.png",
+  confianca: "08-confianca-privacidade.png",
 };
 
 type Box = { id: string; file: string; top: number; left: number; width: number };

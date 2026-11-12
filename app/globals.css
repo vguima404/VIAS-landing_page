@@ -115,6 +115,16 @@
   --color-nevoa-escala: #e9efe7;
   --color-rota-escala: #2d7c60;
   --color-lima-escala: #d7f36a;
+  --color-ref-fundo-08: #f3efe6; /* fundo claro (08) */
+  --color-ref-tinta-08: #03231d; /* título (08) */
+  --color-ref-texto-08: #031711; /* parágrafo (08) */
+  --color-ref-rotulo-08: #696a6b; /* "UNIDADE DE SAÚDE" (08) */
+  --color-ref-cartao-texto-08: #1d2c2b; /* textos do cartão (08) */
+  --color-ref-caixa-08: #f0f8e2; /* caixa "Mamógrafo cadastrado" (08) */
+  --color-ref-check-08: #2e9446; /* círculo do check (08) */
+  --color-ref-no-lima-08: #bcd327; /* nó / fio 01 (08) */
+  --color-ref-no-verde-08: #2c9932; /* nó / fio 02 (08) */
+  --color-ref-nota-texto-08: #20302d; /* descrição das anotações (08) */
 
   /* Escala tipográfica fluida (referência: 1440 px) */
   --text-display: clamp(2.75rem, 1.15rem + 4.6vw, 5.5rem);

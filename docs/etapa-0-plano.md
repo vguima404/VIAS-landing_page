@@ -203,9 +203,9 @@ Linha de progresso: um nó por seção (02–09) e portal no fim. Escala da 07 (
 | F1 | 07 Gestores | **Recebido em 12/11:** fundo completo (território, pins, rede de rotas e linhas lima), 1672×941, usado pixel a pixel. Arquivo: `public/images/gestores/07-gestores-fundo.webp`. | ✓ |
 | F2 | 07 Gestores | Não é mais necessário: o território está no F1. | — |
 | F3 | 07 Gestores | Não é mais necessário. | — |
-| G1 | 08 Confiança | Fundo: sala com janela e plantas, sem a pessoa | PNG, 3344×1882 + sobra (ver regras) |
-| G2 | 08 Confiança | Senhora recortada com o celular | PNG com alpha, mesmo canvas |
-| G3 | 08 Confiança | Primeiro plano: mesa, caneca, bolsa, óculos | PNG com alpha, mesmo canvas |
+| G1 | 08 Confiança | **Recebido em 12/11:** foto completa (senhora à mesa com o celular), 1672×941, usada pixel a pixel, com véus claros em CSS à esquerda e à direita, como na referência. Arquivo: `public/images/confianca/08-confianca-fundo.webp`. | ✓ |
+| G2 | 08 Confiança | Não é mais necessário (foto completa no G1). | — |
+| G3 | 08 Confiança | Não é mais necessário. | — |
 | H1 | 09 CTA | Protagonista caminhando: fundo de rua + recorte | 2 PNGs, 1800×2400 (retrato) |
 | H2 | 09 CTA | Gestor no laptop: fundo de escritório + recorte | 2 PNGs, 1800×2400 (retrato) |
 | U1 | App | UI-01…04 em **1179×2556** (se houver) e UI-02 com "SUS" corrigido | PNG |
