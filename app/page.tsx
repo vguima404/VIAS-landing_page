@@ -3,13 +3,14 @@ import { Logo } from "@/components/brand/logo";
 import { Acessibilidade } from "@/components/sections/acessibilidade/acessibilidade";
 import { ComoFunciona } from "@/components/sections/como-funciona/como-funciona";
 import { Hero } from "@/components/sections/hero/hero";
+import { Inteligencia } from "@/components/sections/inteligencia/inteligencia";
 import { Problema } from "@/components/sections/problema/problema";
 import { SectionShell } from "@/components/sections/section-shell";
 
 /**
  * Página única do VIAS.
  * 02 Hero (Etapa 3.1), 03 O problema (Etapa 4), 04 Como funciona (Etapa 5) e
- * 05 Acessibilidade (Etapa 6): definitivos.
+ * 05 Acessibilidade (Etapa 6) e 06 Inteligência (Etapa 7): definitivos.
  * Demais seções: estrutura provisória com a Linha de Acesso de cada ato (Etapa 1).
  */
 export default function Home() {
@@ -24,21 +25,7 @@ export default function Home() {
 
         <Acessibilidade />
 
-        {/* 06 · Inteligência — atravessa camadas empilhadas */}
-        <SectionShell id="tecnologia" heading="Conectar dados é o que transforma localização em acesso." stage="Etapa 7">
-          <AccessLine
-            width={1200}
-            height={260}
-            track
-            segments={[{ d: "M30 220 C 200 220, 260 180, 400 170 S 620 120, 760 110 S 980 60, 1170 40" }]}
-            nodes={[
-              { x: 30, y: 220, kind: "origin" },
-              { x: 400, y: 170, kind: "junction" },
-              { x: 760, y: 110, kind: "junction" },
-              { x: 1170, y: 40, kind: "access" },
-            ]}
-          />
-        </SectionShell>
+        <Inteligencia />
 
         {/* 07 · Gestores — a linha vira rede (fundo escuro) */}
         <SectionShell id="gestores" heading="O mapa também mostra onde chegar é mais difícil." stage="Etapa 8">

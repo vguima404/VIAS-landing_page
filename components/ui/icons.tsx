@@ -213,3 +213,17 @@ export function ExclamationIcon(props: IconProps) {
     </Base>
   );
 }
+
+/** Rede de nós: inteligência que conecta informações */
+export function NetworkIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="2.6" />
+      <circle cx="5" cy="5.5" r="1.9" />
+      <circle cx="19" cy="5.5" r="1.9" />
+      <circle cx="5" cy="18.5" r="1.9" />
+      <circle cx="19" cy="18.5" r="1.9" />
+      <path d="M6.4 6.9 10 10.2M17.6 6.9 14 10.2M6.4 17.1 10 13.8M17.6 17.1 14 13.8M7 5.5h10M7 18.5h10" />
+    </Base>
+  );
+}

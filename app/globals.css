@@ -92,6 +92,14 @@
   --color-ref-rota-05: #c9dc1f; /* rota lima no mapa (05) */
   --color-ref-pin-05: #b2d204; /* pin (05) */
   --color-ref-pin-centro-05: #052319;
+  --color-ref-fundo-06: #f3f3ea; /* fundo claro (06), igual ao vídeo */
+  --color-ref-rotulo-06: #29423d; /* rótulo INTELIGÊNCIA • DADOS • TERRITÓRIO (06) */
+  --color-ref-tinta-06: #02221b; /* título (06) */
+  --color-ref-texto-06: #031511; /* parágrafo (06) */
+  --color-ref-cartao-titulo-06: #051c19; /* títulos dos cartões laterais (06) */
+  --color-ref-cartao-texto-06: #1d312f;
+  --color-ref-icone-06: #03291f;
+  --color-ref-no-06: #b8d42a; /* nós e fios lima dos cartões (06) */
 
   /* Escala tipográfica fluida (referência: 1440 px) */
   --text-display: clamp(2.75rem, 1.15rem + 4.6vw, 5.5rem);
