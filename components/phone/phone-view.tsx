@@ -3,7 +3,7 @@
 import { View } from "@react-three/drei";
 import type { RefObject } from "react";
 
-import type { ScreenId, StageId } from "./phone-config";
+import { DEFAULT_BLEED, stages, type StageConfig, type ScreenId, type StageId } from "./phone-config";
 import { PhoneScene } from "./phone-scene";
 import type { PhoneMotion } from "./phone-store";
 
@@ -23,11 +23,16 @@ export default function PhoneView({
   onReady?: () => void;
 }) {
   const interactive = window.matchMedia("(pointer: fine)").matches;
+  const bleed = (stages[stage] as StageConfig).bleed ?? DEFAULT_BLEED;
+  const pct = (v: number) => `${-v * 100}%`;
 
   return (
-    // A View passa 15% de cada lado do palco (ver `bleed` na PhoneScene)
-    <View className="absolute -inset-[15%]">
-      <PhoneScene bleed={0.15} stage={stage} screen={screen} motion={motion} interactive={interactive} onReady={onReady} />
+    // A View passa do palco pela margem de cada lado (ver `bleed` na PhoneScene)
+    <View
+      className="absolute"
+      style={{ top: pct(bleed.top), right: pct(bleed.right), bottom: pct(bleed.bottom), left: pct(bleed.left) }}
+    >
+      <PhoneScene bleed={bleed} stage={stage} screen={screen} motion={motion} interactive={interactive} onReady={onReady} />
     </View>
   );
 }

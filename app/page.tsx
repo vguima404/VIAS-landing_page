@@ -1,14 +1,14 @@
 import { AccessLine } from "@/components/access-line";
 import { Logo } from "@/components/brand/logo";
-import { PhoneStepsDemo } from "@/components/sections/como-funciona/phone-steps-demo";
+import { ComoFunciona } from "@/components/sections/como-funciona/como-funciona";
 import { Hero } from "@/components/sections/hero/hero";
 import { Problema } from "@/components/sections/problema/problema";
 import { SectionShell } from "@/components/sections/section-shell";
 
 /**
  * Página única do VIAS.
- * 02 Hero (Etapa 3.1) e 03 O problema (Etapa 4): definitivos. Demais seções: estrutura provisória com a
- * Linha de Acesso de cada ato (Etapa 1) e o iPhone 3D em Como funciona (Etapa 3).
+ * 02 Hero (Etapa 3.1), 03 O problema (Etapa 4) e 04 Como funciona (Etapa 5): definitivos.
+ * Demais seções: estrutura provisória com a Linha de Acesso de cada ato (Etapa 1).
  */
 export default function Home() {
   return (
@@ -18,29 +18,7 @@ export default function Home() {
 
         <Problema />
 
-        {/* 04 · Como funciona — fragmentos se unem em três nós nomeados */}
-        <SectionShell id="como-funciona" heading="Do que você precisa ao caminho para chegar." stage="Etapa 5">
-          <div>
-            <AccessLine
-              width={1200}
-              height={120}
-              track
-              head
-              segments={[{ d: "M60 80 C 260 80, 360 30, 600 40 S 960 90, 1140 50" }]}
-              nodes={[
-                { x: 60, y: 80, kind: "origin" },
-                { x: 600, y: 40, kind: "junction" },
-                { x: 1140, y: 50, kind: "access" },
-              ]}
-            />
-            <ol className="label-mono mt-4 grid grid-cols-3 text-rota">
-              <li>01 Necessidade</li>
-              <li className="text-center">02 Unidade</li>
-              <li className="text-right">03 Percurso</li>
-            </ol>
-          </div>
-          <PhoneStepsDemo />
-        </SectionShell>
+        <ComoFunciona />
 
         {/* 05 · Acessibilidade — variações contínua / tracejada */}
         <SectionShell id="acessibilidade" heading="O caminho também precisa funcionar para quem percorre." stage="Etapa 6">

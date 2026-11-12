@@ -5,7 +5,7 @@ import { Suspense, type RefObject } from "react";
 
 import { colors } from "@/lib/tokens";
 
-import { PHONE_HEIGHT, stages, type ScreenId, type StageId } from "./phone-config";
+import { PHONE_HEIGHT, stages, type Bleed, type ScreenId, type StageId } from "./phone-config";
 import { PhoneModel } from "./phone-model";
 import type { PhoneMotion } from "./phone-store";
 
@@ -20,14 +20,14 @@ export function PhoneScene({
   motion,
   interactive,
   onReady,
-  bleed = 0,
+  bleed,
 }: {
   /**
-   * Margem extra desenhada além do palco (fração da largura/altura em cada
+   * Margem extra desenhada além do palco (fração da largura/altura por
    * lado), sem mudar o enquadramento: o aparelho pode girar e se mover com o
    * scroll sem ser cortado na borda do palco.
    */
-  bleed?: number;
+  bleed?: Bleed;
   stage?: StageId;
   screen: ScreenId;
   motion?: RefObject<PhoneMotion>;
@@ -45,8 +45,10 @@ export function PhoneScene({
         onUpdate={(cam) => {
           cam.lookAt(camera.target[0], camera.target[1], camera.target[2]);
           // A View é maior que o palco: amplia o frustum na mesma proporção
-          if (bleed > 0) cam.setViewOffset(1, 1, -bleed, -bleed, 1 + 2 * bleed, 1 + 2 * bleed);
-          else cam.clearViewOffset();
+          if (bleed) {
+            const { top, right, bottom, left } = bleed;
+            cam.setViewOffset(1, 1, -left, -top, 1 + left + right, 1 + top + bottom);
+          } else cam.clearViewOffset();
         }}
       />
 

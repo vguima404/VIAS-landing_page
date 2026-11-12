@@ -47,7 +47,9 @@ export function ProgressLine({ tone }: { tone: AccessTone }) {
         fractions = sections.map((s, i) => {
           const el = document.getElementById(s.id);
           if (i === 0 || !el || max <= 0) return i === 0 ? 0 : i / sections.length;
-          return clamp01((el.getBoundingClientRect().top + window.scrollY - navH) / max);
+          // Seção presa (pin do ScrollTrigger): a posição real é a do espaçador
+          const box = el.parentElement?.classList.contains("pin-spacer") ? el.parentElement : el;
+          return clamp01((box.getBoundingClientRect().top + window.scrollY - navH) / max);
         });
         setStops(fractions);
       };

@@ -58,7 +58,10 @@ Nas seções, use o palco:
 
 - Sempre mostra o poster (`public/posters/`, renderizado da própria cena 3D). O 3D entra por cima com crossfade.
 - Sem WebGL2, com `prefers-reduced-motion`, economia de dados ou aparelho fraco: fica só o poster.
-- Telas (`public/screens/`) e posters são indexados por `ui-01` a `ui-04` em `components/phone/phone-config.ts`.
+- Telas (`public/screens/`) e posters são indexados por `ui-01` a `ui-04` e `ui-03-previa` (prévia do percurso,
+  referência 04) em `components/phone/phone-config.ts`.
+- Cada palco (`stages`) tem câmera, pose e margem de desenho (`bleed`) próprias. O palco `como` não tem margem
+  embaixo: o aparelho termina na borda inferior da seção, como na referência.
 - three.js, R3F e drei ficam num chunk separado, carregado sob demanda.
 
 ## Fidelidade às referências
@@ -70,7 +73,8 @@ mais largas que 16:9 o quadro fica encostado à direita (sobra à esquerda, fund
 
 Conferência em desenvolvimento (`npm run dev`):
 
-- `http://localhost:3000/?ref` sobrepõe a imagem de referência a cada seção já construída (`?ref=70` = 70% de opacidade)
+- `http://localhost:3000/?ref` sobrepõe a imagem de referência a cada seção já construída (`?ref=70` = 70% de opacidade);
+  a sobreposição acompanha a seção na tela, inclusive enquanto "Como funciona" está presa (sticky)
 - tecla **R** liga/desliga; tecla **D** alterna o modo diferença (o que coincide fica preto)
 - `window.__phoneStore.debugPose` / `debugCamera` ajustam a pose do iPhone ao vivo
 

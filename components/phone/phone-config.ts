@@ -27,6 +27,11 @@ export const screens = {
     texture: "/screens/ui-04.webp",
     alt: "iPhone com o app VIAS mostrando a acessibilidade no percurso: trechos não informados, parcial e informado. Demonstração, dados ilustrativos.",
   },
+  /** Prévia do percurso (referência 04): mapa com a rota, o tempo e o meio de transporte */
+  "ui-03-previa": {
+    texture: "/screens/ui-03-previa.webp",
+    alt: "iPhone com o app VIAS mostrando a prévia do percurso no mapa: 15 minutos via transporte público, 1,2 km.",
+  },
 } as const;
 
 export type ScreenId = keyof typeof screens;
@@ -49,7 +54,16 @@ export type StageConfig = {
   posterPrefix: string;
   /** Tamanho dos posters em px (mesma proporção do palco) */
   posterSize: [number, number];
+  /**
+   * Margem desenhada além do palco, por lado (fração da largura/altura).
+   * Padrão: 15% em todos os lados. Zero onde o aparelho deve ser cortado
+   * pela borda do palco (ex.: borda inferior da seção).
+   */
+  bleed?: Bleed;
 };
+
+export type Bleed = { top: number; right: number; bottom: number; left: number };
+export const DEFAULT_BLEED: Bleed = { top: 0.15, right: 0.15, bottom: 0.15, left: 0.15 };
 
 /**
  * Palcos do iPhone. Cada um reproduz o enquadramento de uma referência.
@@ -74,6 +88,23 @@ export const stages = {
     pose: { rx: -0.36, ry: -0.45, rz: 0.25 },
     posterPrefix: "phone-hero",
     posterSize: [930, 1215],
+  },
+  /**
+   * como: referência 04 — aparelho grande, inclinado para trás e girado para a
+   * direita, cortado pela borda inferior da seção. O palco é a área visível
+   * (x 1100–1672, y 500–941 da referência); sem margem embaixo, para o
+   * aparelho terminar exatamente na borda da seção.
+   */
+  como: {
+    aspectClass: "aspect-[572/441]",
+    // Ajustado por medição contra as bordas da tela do aparelho na
+    // referência 04 (erro médio ≈ 10u) e contra o escorço do conteúdo da tela:
+    // câmera abaixo do aparelho, que está inclinado para trás e girado para a direita
+    camera: { fov: 27.53, position: [0, -1.232, 2.768], target: [0.027, -0.004, 0] },
+    pose: { rx: -0.467, ry: -0.051, rz: 0.206 },
+    posterPrefix: "phone-como",
+    posterSize: [1144, 882],
+    bleed: { top: 0.15, right: 0, bottom: 0, left: 0.15 },
   },
 } satisfies Record<string, StageConfig>;
 

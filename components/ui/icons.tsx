@@ -118,6 +118,53 @@ export function BusIcon(props: IconProps) {
   );
 }
 
+/** Duas pessoas (preenchido): tipo de atendimento, ex. "SUS" */
+export function PeopleIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor" {...props}>
+      <circle cx="8" cy="7.2" r="3.3" />
+      <circle cx="16.2" cy="7.6" r="3" />
+      <path d="M1.8 19.6c0-3.7 2.6-6.4 6.2-6.4s6.2 2.7 6.2 6.4v.9H1.8v-.9Z" />
+      <path d="M15.4 20.5v-.9c0-2.1-.7-3.9-1.9-5.2.8-.5 1.7-.8 2.7-.8 3.3 0 5.8 2.5 5.8 5.9v1H15.4Z" />
+    </svg>
+  );
+}
+
+export function ChevronDownIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M6.5 9.5 12 15l5.5-5.5" />
+    </Base>
+  );
+}
+
+export function ChevronRightIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M9.5 6 15.5 12l-6 6" />
+    </Base>
+  );
+}
+
+export function ClockIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 2" />
+    </Base>
+  );
+}
+
+/** Pessoa caminhando: trecho a pé */
+export function WalkIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="13" cy="4.3" r="1.7" />
+      <path d="M10.2 21l2.3-5.2-2.2-2.6.9-4.6M11.2 8.6l-3 1.6-1.2 3.3M11.2 8.6l2.7 3.2 3.1 1M12.5 15.8l2.2 5.2" />
+    </Base>
+  );
+}
+
 /** Cadeira de rodas: condições de acesso */
 export function AccessibilityIcon(props: IconProps) {
   return (

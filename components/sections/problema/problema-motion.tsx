@@ -3,7 +3,7 @@
 import { useRef, type ComponentPropsWithoutRef } from "react";
 
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
-import { duration, ease, stagger } from "@/lib/tokens";
+import { duration, ease } from "@/lib/tokens";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
 /**

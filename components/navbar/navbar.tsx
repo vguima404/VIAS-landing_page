@@ -63,14 +63,16 @@ export function Navbar() {
       });
     });
 
-    // Seção ativa: a que cruza o meio da viewport
+    // Seção ativa: a que cruza o meio da viewport. Seções presas (pin) são
+    // medidas pelo espaçador, que inclui o trecho em que ficam paradas
+    const box = (el: HTMLElement) => (el.parentElement?.classList.contains("pin-spacer") ? el.parentElement : el);
+    const docTop = (el: HTMLElement) => box(el).getBoundingClientRect().top + window.scrollY;
     sections.forEach((s) => {
       const el = document.getElementById(s.id);
       if (!el) return;
       ScrollTrigger.create({
-        trigger: el,
-        start: "top 50%",
-        end: "bottom 50%",
+        start: () => docTop(el) - window.innerHeight / 2,
+        end: () => docTop(el) + box(el).offsetHeight - window.innerHeight / 2,
         onToggle: (self) => {
           if (self.isActive) setActiveId(s.id);
         },

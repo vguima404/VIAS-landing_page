@@ -57,6 +57,22 @@
   --color-ref-rota-lima: #c9d47b; /* trecho lima do minimapa (03) */
   --color-ref-pin-lima: #b2d111; /* pin lima (03) */
   --color-ref-pin-centro: #0b3128;
+  --color-ref-fundo-04: #f5f5ef; /* fundo claro (04) */
+  --color-ref-tinta-04: #0b2e29; /* título (04) */
+  --color-ref-texto-04: #0e2522; /* parágrafo (04) */
+  --color-ref-numeral: #a0aba0; /* numerais 01 / 02 (04) */
+  --color-ref-numeral-escuro: #9aa59a; /* numeral 03, sobre o verde (04) */
+  --color-ref-rotulo-04: #08302a; /* NECESSIDADE / UNIDADE (04) */
+  --color-ref-pergunta: #1d332e; /* frases das etapas (04) */
+  --color-ref-pergunta-clara: #e2eae7; /* frase da etapa 03, sobre o verde (04) */
+  --color-ref-linha-04: #136848; /* trecho verde da linha (04) */
+  --color-ref-linha-lima: #b4cf41; /* trecho lima da linha (04) */
+  --color-ref-no-lima: #b2d123; /* anel dos nós (04) */
+  --color-ref-cartao: #efeeeb; /* cartões (04) */
+  --color-ref-campo: #f3f3f1; /* campos do cartão 01 (04) */
+  --color-ref-cartao-texto: #12302b; /* textos dos cartões (04) */
+  --color-ref-botao-04: #10463a; /* botão "Buscar unidades" (04) */
+  --color-ref-sus: #5ba16d; /* selo SUS (04) */
 
   /* Escala tipográfica fluida (referência: 1440 px) */
   --text-display: clamp(2.75rem, 1.15rem + 4.6vw, 5.5rem);
