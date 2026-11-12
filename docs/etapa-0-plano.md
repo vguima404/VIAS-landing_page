@@ -190,12 +190,9 @@ Linha de progresso: um nó por seção (02–09) e portal no fim. Escala da 07 (
 
 | # | Seção | Arquivo(s) | Formato / tamanho |
 |---|---|---|---|
-| A1 | 02 Hero | Cidade aérea **sem rotas e sem pins** (só cidade, rio e vegetação) | PNG, 3344×1882 + sobra (ver regras) |
-| A2 | 02 Hero | Céu/horizonte e nuvens separados da cidade (opcional, para profundidade) | PNG com alpha, mesmo canvas |
-| A3 | 02 Hero | Folhagem desfocada de primeiro plano (cantos inferiores) | PNG com alpha, mesmo canvas |
-| A4 | 02 Hero | **Guia (não publicado):** a mesma cidade **com** as rotas, para eu traçar o SVG alinhado às ruas | PNG, mesmo canvas |
-| B1 | 03 Problema | Fundo: estação/ponto de ônibus, sem a pessoa (clean plate) | PNG, 3344×1882 + sobra (ver regras) |
-| B2 | 03 Problema | Protagonista recortada (com bolsa e celular) | PNG com alpha, mesmo canvas |
+| A1–A4 | 02 Hero | **Recebido (12/11):** fundo completo (cidade, rotas, pins, disco e chão) em 1672×941, no mesmo quadro da referência → `public/images/hero/02-hero-fundo.webp` (versão 2× em 3344×1882 recebida). Uma versão em 2× (3344×1882) deixaria o fundo mais nítido em telas retina. | — |
+| B1 | 03 Problema | **Fundo completo da seção, como o do Hero:** a fotografia da protagonista no ponto com o recorte diagonal e o mapa claro de ruas no canto inferior esquerdo, exatamente no quadro da referência 03. **Sem** título, parágrafo, as 4 pílulas de pergunta, a rota (cinza e lima) e o pin (eu desenho e animo), e sem logo/navbar. | PNG/WebP, 3344×1882 (2×) ou 1672×941 |
+| B2 | 03 Problema | Opcional, para parallax: a protagonista recortada (com bolsa e celular), no mesmo quadro, com transparência **real** (não o xadrez desenhado) | PNG com alpha, mesmo tamanho do B1 |
 | C1 | 04 Como funciona | Fundo: árvores e prédio, sem a pessoa | PNG, 3344×1882 + sobra (ver regras) |
 | C2 | 04 Como funciona | Protagonista recortada olhando para cima | PNG com alpha, mesmo canvas |
 | C3 | 04 Como funciona | Foto da fachada para o cartão 02: unidade genérica, **sem placa, nome ou logotipo legível**, enquadrada como na referência | PNG, 800×640 |

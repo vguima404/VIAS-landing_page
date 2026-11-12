@@ -61,6 +61,19 @@ Nas seções, use o palco:
 - Telas (`public/screens/`) e posters são indexados por `ui-01` a `ui-04` em `components/phone/phone-config.ts`.
 - three.js, R3F e drei ficam num chunk separado, carregado sob demanda.
 
+## Fidelidade às referências
+
+As seções reproduzem as imagens de `referencias/landing/` (1672×941). No desktop (≥ 1280 px) as medidas usam a
+unidade de referência: `1u` = 1 px da imagem, escalado para que o quadro 1672×941 caiba inteiro na tela
+(`min(largura/1672, altura/941)`), como a imagem vista em tela cheia. Utilitários `u-*` (ex.: `xl:u-left-103`); em telas
+mais largas que 16:9 o quadro fica encostado à direita (sobra à esquerda, fundo liso) e `fx-*` medem a partir da borda dele (ex.: `xl:fx-pl-98`).
+
+Conferência em desenvolvimento (`npm run dev`):
+
+- `http://localhost:3000/?ref` sobrepõe a imagem de referência a cada seção já construída (`?ref=70` = 70% de opacidade)
+- tecla **R** liga/desliga; tecla **D** alterna o modo diferença (o que coincide fica preto)
+- `window.__phoneStore.debugPose` / `debugCamera` ajustam a pose do iPhone ao vivo
+
 ## Créditos
 
 Modelo 3D "Iphone 14 Pro" por mister dude (Sketchfab), licenciado sob CC BY 4.0. Modificado (tela separada, material da tela, otimização para a web).

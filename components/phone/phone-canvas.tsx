@@ -44,6 +44,9 @@ function RenderTriggers() {
 
   useEffect(() => {
     phoneStore.setInvalidate(invalidate);
+    if (process.env.NODE_ENV === "development") {
+      (window as unknown as { __phoneStore: typeof phoneStore }).__phoneStore = phoneStore;
+    }
     const fine = window.matchMedia("(pointer: fine)").matches;
 
     const onScroll = () => phoneStore.requestRender();

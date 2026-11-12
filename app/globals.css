@@ -29,6 +29,35 @@
   /* Texto secundário em fundo escuro (Sálvia falha AA sobre Pinho) */
   --color-papel-suave: rgb(246 247 241 / 0.76);
 
+  /*
+   * Cores medidas nas imagens de referência (decisão de 12/11: onde a imagem
+   * difere da paleta, vale a imagem). Prefixo "ref-": usar nas seções
+   * construídas a partir das referências.
+   */
+  --color-ref-tinta: #05201c; /* títulos e logo (02) */
+  --color-ref-rota: #1e6e50; /* 2ª linha do título do Hero (02) */
+  --color-ref-rotulo: #1a5a47; /* rótulo mono (02) */
+  --color-ref-texto: #2e4443; /* parágrafo (02) */
+  --color-ref-texto-suave: #495654; /* textos dos destaques (02) */
+  --color-ref-nav: #283030; /* links da navbar (02) */
+  --color-ref-icone: #0f6146; /* ícones lineares (02) */
+  --color-ref-botao: #063429; /* botão primário (02) */
+  --color-ref-botao-texto: #f9fbfa;
+  --color-ref-secundario: #0b2c25; /* botão secundário / anel do play (02) */
+  --color-ref-divisor: #cbcdc5; /* divisores verticais (02) */
+  --color-ref-fio: #d5d7cf; /* traço ao lado do rótulo (02) */
+  --color-ref-fundo: #f6f5ec; /* fundo claro (02) */
+  --color-ref-tinta-03: #0a1a17; /* título (03) */
+  --color-ref-texto-03: #142320; /* parágrafo (03) */
+  --color-ref-fundo-03: #f1f2ec; /* fundo claro (03) */
+  --color-ref-pilula: #dcddd7; /* pílulas de pergunta (03) */
+  --color-ref-pilula-texto: #1d2f2a;
+  --color-ref-pilula-icone: #162e29;
+  --color-ref-rota-cinza: #9e9f9e; /* trecho cinza do minimapa (03) */
+  --color-ref-rota-lima: #c9d47b; /* trecho lima do minimapa (03) */
+  --color-ref-pin-lima: #b2d111; /* pin lima (03) */
+  --color-ref-pin-centro: #0b3128;
+
   /* Escala tipográfica fluida (referência: 1440 px) */
   --text-display: clamp(2.75rem, 1.15rem + 4.6vw, 5.5rem);
   --text-display--line-height: 0.98;
@@ -96,4 +125,99 @@
 /* Rótulo técnico: IBM Plex Mono, caixa alta, tracking aberto */
 @utility label-mono {
   @apply font-mono text-label font-medium uppercase;
+}
+
+/* ==========================================================================
+   Unidade de referência (--u)
+   1u = 1 pixel das imagens de referência (1672×941), escalado para que o
+   quadro inteiro caiba na tela: min(largura/1672, altura/941), como a
+   imagem vista em tela cheia. Usada nos layouts desktop (xl+) para
+   reproduzir as referências com as mesmas posições, tamanhos e espaçamentos.
+   Definida no <body> (layout.tsx) a partir de 100cqw do <html> e 100svh.
+   Uso: xl:u-left-103 → left: 103u.
+   ========================================================================== */
+
+@property --u {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 1px;
+}
+
+/*
+ * Quadro da referência encostado à direita (decisão de 12/11): quando a tela
+ * é mais larga que 16:9, o quadro (1672u) cabe na altura, termina na borda
+ * direita e toda a sobra fica à esquerda, em fundo claro liso. fx-* medem a
+ * partir da borda do QUADRO; 100% é a largura do bloco de contenção (seção ou
+ * navbar, ambos em largura total).
+ */
+@utility fx-left-* {
+  left: calc(100% - var(--u) * 1672 + var(--u) * --value(number));
+}
+@utility fx-pl-* {
+  padding-left: calc(100% - var(--u) * 1672 + var(--u) * --value(number));
+}
+@utility fx-pr-* {
+  padding-right: calc(var(--u) * --value(number));
+}
+
+/*
+ * Grupo da esquerda (textos do Hero, logo): em telas largas fica no meio do
+ * caminho entre a borda da tela e a borda do quadro (metade da sobra), para
+ * não ficar nem colado à esquerda nem centralizado demais (decisão de 12/11).
+ */
+@utility hx-left-* {
+  left: calc((100% - var(--u) * 1672) / 2 + var(--u) * --value(number));
+}
+@utility hx-pl-* {
+  padding-left: calc((100% - var(--u) * 1672) / 2 + var(--u) * --value(number));
+}
+
+@utility u-left-* {
+  left: calc(var(--u) * --value(number));
+}
+@utility -u-left-* {
+  left: calc(var(--u) * --value(number) * -1);
+}
+@utility u-right-* {
+  right: calc(var(--u) * --value(number));
+}
+@utility u-top-* {
+  top: calc(var(--u) * --value(number));
+}
+@utility u-bottom-* {
+  bottom: calc(var(--u) * --value(number));
+}
+@utility u-w-* {
+  width: calc(var(--u) * --value(number));
+}
+@utility u-h-* {
+  height: calc(var(--u) * --value(number));
+}
+@utility u-size-* {
+  width: calc(var(--u) * --value(number));
+  height: calc(var(--u) * --value(number));
+}
+@utility u-text-* {
+  font-size: calc(var(--u) * --value(number));
+}
+@utility u-leading-* {
+  line-height: calc(var(--u) * --value(number));
+}
+@utility u-gap-* {
+  gap: calc(var(--u) * --value(number));
+}
+@utility u-px-* {
+  padding-inline: calc(var(--u) * --value(number));
+}
+@utility u-pl-* {
+  padding-left: calc(var(--u) * --value(number));
+}
+@utility u-pr-* {
+  padding-right: calc(var(--u) * --value(number));
+}
+@utility u-mt-* {
+  margin-top: calc(var(--u) * --value(number));
+}
+@utility u-border-* {
+  border-width: calc(var(--u) * --value(number));
 }

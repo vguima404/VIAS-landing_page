@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { AccessNodeGlyph, type AccessTone } from "@/components/access-line";
 import { ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { navHeight } from "@/lib/nav-height";
 import { sections } from "@/lib/sections";
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -32,8 +33,7 @@ export function ProgressLine({ tone }: { tone: AccessTone }) {
       if (!rail) return;
       const fill = rail.querySelector<HTMLElement>("[data-fill]")!;
       const head = rail.querySelector<HTMLElement>("[data-head]")!;
-      const header = rail.closest("header");
-
+      
       let fractions: number[] = [];
       let width = rail.clientWidth;
       /** Tolerância de 4 px de scroll, para o nó acender ao pousar na âncora */
@@ -42,7 +42,7 @@ export function ProgressLine({ tone }: { tone: AccessTone }) {
       const measure = () => {
         const max = ScrollTrigger.maxScroll(window);
         tolerance = max > 0 ? 4 / max : 0;
-        const navH = header?.offsetHeight ?? 0;
+        const navH = navHeight();
         width = rail.clientWidth;
         fractions = sections.map((s, i) => {
           const el = document.getElementById(s.id);
@@ -97,7 +97,7 @@ export function ProgressLine({ tone }: { tone: AccessTone }) {
       />
 
       {/* Percurso: dentro do contêiner, para os nós das pontas não serem cortados */}
-      <div className="container-site">
+      <div className="container-site xl:max-w-none xl:fx-pr-92 xl:hx-pl-98">
         <div ref={railRef} className="relative h-0">
           <div
             data-fill

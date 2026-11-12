@@ -1,50 +1,22 @@
 import { AccessLine } from "@/components/access-line";
 import { Logo } from "@/components/brand/logo";
-import { PhoneSlot } from "@/components/phone";
 import { PhoneStepsDemo } from "@/components/sections/como-funciona/phone-steps-demo";
+import { Hero } from "@/components/sections/hero/hero";
+import { Problema } from "@/components/sections/problema/problema";
 import { SectionShell } from "@/components/sections/section-shell";
 
 /**
  * Página única do VIAS.
- * Estrutura provisória das seções: Linha de Acesso em cada ato da narrativa
- * (Etapa 1) e o iPhone 3D no Hero e em Como funciona (Etapa 3).
+ * 02 Hero (Etapa 3.1) e 03 O problema (Etapa 4): definitivos. Demais seções: estrutura provisória com a
+ * Linha de Acesso de cada ato (Etapa 1) e o iPhone 3D em Como funciona (Etapa 3).
  */
 export default function Home() {
   return (
     <>
       <main id="conteudo" tabIndex={-1} className="focus:outline-none">
-        {/* 02 · Hero — contínua: sai da cidade e entra no celular */}
-        <SectionShell id="inicio" headingLevel={1} heading="Saúde não é só encontrar. É conseguir chegar." stage="Etapa 3.1">
-          <div className="grid items-center gap-10 md:grid-cols-[1fr_auto]">
-            <AccessLine
-              width={1200}
-              height={220}
-              mode={{ type: "enter", duration: 1.8 }}
-              head
-              segments={[{ d: "M30 170 C 240 170, 300 60, 520 70 S 820 190, 980 120 S 1130 50, 1170 50" }]}
-              nodes={[
-                { x: 30, y: 170, kind: "origin" },
-                { x: 520, y: 70, kind: "junction" },
-                { x: 1170, y: 50, kind: "access" },
-              ]}
-            />
-            <PhoneSlot screen="ui-01" priority className="w-64 justify-self-center lg:w-80" />
-          </div>
-        </SectionShell>
+        <Hero />
 
-        {/* 03 · O problema — fragmentada, com lacunas, não chega */}
-        <SectionShell id="problema" heading="O endereço mais perto nem sempre é o atendimento certo." stage="Etapa 4">
-          <AccessLine
-            width={1200}
-            height={200}
-            track
-            segments={[{ d: "M30 140 C 260 140, 330 50, 560 70 S 840 170, 1000 110", variant: "fragmented", to: 1 }]}
-            nodes={[
-              { x: 30, y: 140, kind: "origin" },
-              { x: 560, y: 70, kind: "junction" },
-            ]}
-          />
-        </SectionShell>
+        <Problema />
 
         {/* 04 · Como funciona — fragmentos se unem em três nós nomeados */}
         <SectionShell id="como-funciona" heading="Do que você precisa ao caminho para chegar." stage="Etapa 5">

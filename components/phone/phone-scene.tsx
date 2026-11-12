@@ -5,7 +5,7 @@ import { Suspense, type RefObject } from "react";
 
 import { colors } from "@/lib/tokens";
 
-import { CAMERA, PHONE_HEIGHT, type ScreenId } from "./phone-config";
+import { PHONE_HEIGHT, stages, type ScreenId, type StageId } from "./phone-config";
 import { PhoneModel } from "./phone-model";
 import type { PhoneMotion } from "./phone-store";
 
@@ -15,23 +15,39 @@ import type { PhoneMotion } from "./phone-store";
  * (mesmo enquadramento → o poster troca para o 3D sem salto).
  */
 export function PhoneScene({
+  stage = "default",
   screen,
   motion,
   interactive,
   onReady,
+  bleed = 0,
 }: {
+  /**
+   * Margem extra desenhada além do palco (fração da largura/altura em cada
+   * lado), sem mudar o enquadramento: o aparelho pode girar e se mover com o
+   * scroll sem ser cortado na borda do palco.
+   */
+  bleed?: number;
+  stage?: StageId;
   screen: ScreenId;
   motion?: RefObject<PhoneMotion>;
   interactive?: boolean;
   onReady?: () => void;
 }) {
+  const { camera, pose } = stages[stage];
+
   return (
     <>
       <PerspectiveCamera
         makeDefault
-        fov={CAMERA.fov}
-        position={CAMERA.position}
-        onUpdate={(cam) => cam.lookAt(...CAMERA.target)}
+        fov={camera.fov}
+        position={camera.position}
+        onUpdate={(cam) => {
+          cam.lookAt(camera.target[0], camera.target[1], camera.target[2]);
+          // A View é maior que o palco: amplia o frustum na mesma proporção
+          if (bleed > 0) cam.setViewOffset(1, 1, -bleed, -bleed, 1 + 2 * bleed, 1 + 2 * bleed);
+          else cam.clearViewOffset();
+        }}
       />
 
       {/* Estúdio suave: softboxes como reflexos, sem cromado exagerado */}
@@ -44,7 +60,7 @@ export function PhoneScene({
       <ambientLight intensity={0.12} />
 
       <Suspense fallback={null}>
-        <PhoneModel screen={screen} motion={motion} interactive={interactive} onReady={onReady} />
+        <PhoneModel screen={screen} pose={pose} motion={motion} interactive={interactive} onReady={onReady} />
       </Suspense>
 
       <ContactShadows

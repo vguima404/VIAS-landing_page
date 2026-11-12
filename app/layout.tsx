@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Mono, Inter, Space_Grotesk } from "next/font/google";
 
 import { Navbar } from "@/components/navbar/navbar";
+import { ReferenceOverlay } from "@/components/dev/reference-overlay";
 import { PhoneCanvasMount } from "@/components/phone";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
 
@@ -54,20 +55,40 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="pt-BR"
+      // O script inline abaixo adiciona .motion-ready antes da hidratação
+      suppressHydrationWarning
       className={[
         spaceGrotesk.variable,
         inter.variable,
         plexMono.variable,
         "bg-papel font-sans text-grafite antialiased optimizeLegibility",
-        // Âncoras descontam a navbar fixa; sem Lenis (reduced motion off), rolagem nativa suave
-        "scroll-pt-(--spacing-nav) motion-safe:not-[.lenis]:scroll-smooth",
+        // Contêiner de largura: base da unidade de referência --u (ver globals.css)
+        "@container",
+        // Âncoras descontam a navbar fixa (no desktop xl: 107u, compacta);
+        // sem Lenis (reduced motion), rolagem nativa suave
+        "scroll-pt-(--spacing-nav) xl:scroll-pt-[calc(min(100vw/1672,100svh/941)*107)] motion-safe:not-[.lenis]:scroll-smooth",
         // Cor do anel de foco (seções escuras redefinem para lima)
         "[--focus-ring:var(--color-rota)]",
       ].join(" ")}
     >
+      <head>
+        {/*
+          Oculta os elementos de entrada (data-hero etc.) antes do primeiro
+          paint, só quando há movimento. Se o JS de animação não iniciar em 4 s,
+          devolve tudo ao estado visível.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var d=document.documentElement;d.classList.add('motion-ready');setTimeout(function(){if(!window.__motionStarted)d.classList.remove('motion-ready')},4000)}}catch(e){}})();",
+          }}
+        />
+      </head>
       <body
         className={[
           "min-h-dvh overflow-x-clip",
+          // 1u = 1 px da referência; o quadro 1672×941 cabe inteiro na tela
+          "[--u:min(calc(100cqw/1672),calc(100svh/941))]",
           "selection:bg-lima selection:text-pinho",
           "**:focus-visible:outline-2 **:focus-visible:outline-offset-3 **:focus-visible:outline-(--focus-ring)",
         ].join(" ")}
@@ -82,6 +103,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Navbar />
           {children}
           <PhoneCanvasMount />
+          {process.env.NODE_ENV === "development" && <ReferenceOverlay />}
         </SmoothScroll>
       </body>
     </html>

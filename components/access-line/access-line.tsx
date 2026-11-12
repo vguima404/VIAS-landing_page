@@ -21,6 +21,8 @@ export type AccessSegment = {
   /** Trecho do progresso total (0..1) em que este segmento se desenha */
   from?: number;
   to?: number;
+  /** Classes de cor do traço deste segmento (ex.: "stroke-ref-rota-cinza") */
+  className?: string;
   /** Cor CSS da linha; se omitida: verde-rota no claro, lima no escuro */
   color?: string;
 };
@@ -59,6 +61,13 @@ export type AccessLineProps = {
   head?: boolean;
   /** Espessura da linha em px de tela */
   strokeWidth?: number;
+  /** Classes de cor do traço (substitui verde-rota / lima do tom) */
+  lineClassName?: string;
+  /**
+   * Halo luminoso sob o traço (rotas "acesas" sobre fotografia).
+   * `className` define a cor (ex.: "stroke-lima").
+   */
+  glow?: { className: string; width?: number; blur?: number; opacity?: number };
   /**
    * `false` (padrão): mantém a proporção do viewBox.
    * `true`: estica para preencher o contêiner (linhas e nós continuam nítidos).
@@ -107,6 +116,8 @@ export function AccessLine({
   track = false,
   head = false,
   strokeWidth = 2,
+  lineClassName,
+  glow,
   stretch = false,
   className,
   style,
@@ -115,7 +126,8 @@ export function AccessLine({
   const rootRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
-  const lineClass = tone === "dark" ? "stroke-lima" : "stroke-rota";
+  const lineClass = lineClassName ?? (tone === "dark" ? "stroke-lima" : "stroke-rota");
+  const glowId = `alg-${uid}`;
   const trackClass = tone === "dark" ? "stroke-papel/16" : "stroke-linha";
 
   const segs = segments.map((s, i) => ({
@@ -222,6 +234,11 @@ export function AccessLine({
         focusable="false"
       >
         <defs>
+          {glow && (
+            <filter id={glowId} x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation={glow.blur ?? 3} />
+            </filter>
+          )}
           {segs.map((s) => (
             <mask key={s.maskId} id={s.maskId} maskUnits="userSpaceOnUse" x="-10%" y="-10%" width="120%" height="120%">
               <path
@@ -253,6 +270,22 @@ export function AccessLine({
             />
           ))}
 
+        {glow &&
+          segs.map((s, i) => (
+            <g key={`g${i}`} mask={`url(#${s.maskId})`}>
+              <path
+                d={s.d}
+                fill="none"
+                filter={`url(#${glowId})`}
+                strokeWidth={glow.width ?? strokeWidth * 4}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                opacity={glow.opacity ?? 0.6}
+                className={glow.className}
+              />
+            </g>
+          ))}
+
         {segs.map((s, i) => (
           <path
             key={`s${i}`}
@@ -261,7 +294,7 @@ export function AccessLine({
             mask={`url(#${s.maskId})`}
             fill="none"
             stroke={s.color}
-            className={s.color ? undefined : lineClass}
+            className={s.className ?? (s.color ? undefined : lineClass)}
             strokeWidth={strokeWidth}
             strokeLinecap="round"
             strokeLinejoin="round"

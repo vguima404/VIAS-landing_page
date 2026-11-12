@@ -3,7 +3,7 @@
 import { View } from "@react-three/drei";
 import type { RefObject } from "react";
 
-import type { ScreenId } from "./phone-config";
+import type { ScreenId, StageId } from "./phone-config";
 import { PhoneScene } from "./phone-scene";
 import type { PhoneMotion } from "./phone-store";
 
@@ -12,10 +12,12 @@ import type { PhoneMotion } from "./phone-store";
  * desenhada pelo canvas único (<PhoneCanvas>). Carregada só no cliente.
  */
 export default function PhoneView({
+  stage,
   screen,
   motion,
   onReady,
 }: {
+  stage: StageId;
   screen: ScreenId;
   motion?: RefObject<PhoneMotion>;
   onReady?: () => void;
@@ -23,8 +25,9 @@ export default function PhoneView({
   const interactive = window.matchMedia("(pointer: fine)").matches;
 
   return (
-    <View className="absolute inset-0">
-      <PhoneScene screen={screen} motion={motion} interactive={interactive} onReady={onReady} />
+    // A View passa 15% de cada lado do palco (ver `bleed` na PhoneScene)
+    <View className="absolute -inset-[15%]">
+      <PhoneScene bleed={0.15} stage={stage} screen={screen} motion={motion} interactive={interactive} onReady={onReady} />
     </View>
   );
 }

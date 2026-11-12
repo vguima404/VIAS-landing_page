@@ -6,7 +6,7 @@ import { useEffect, useRef, useState, type RefObject } from "react";
 
 import { ScrollTrigger, useGSAP } from "@/lib/gsap";
 
-import { screens, type ScreenId } from "./phone-config";
+import { posterFor, screens, stages, type ScreenId, type StageId } from "./phone-config";
 import { createMotion, phoneStore, type PhoneMotion } from "./phone-store";
 import { usePhoneSupport } from "./use-phone-support";
 
@@ -21,14 +21,18 @@ const PhoneView = dynamic(() => import("./phone-view"), { ssr: false });
  * o poster fica, e a troca de tela vira um crossfade entre posters.
  */
 export function PhoneSlot({
+  stage = "default",
   screen,
   posterScreens,
   motion,
   scrollTilt = true,
   priority = false,
+  hold3d = false,
   sizes = "(min-width: 1024px) 380px, 70vw",
   className,
 }: {
+  /** Enquadramento, câmera e pose (ver phone-config) */
+  stage?: StageId;
   screen: ScreenId;
   /** Telas que este palco pode mostrar (posters pré-carregados para o modo estático) */
   posterScreens?: ScreenId[];
@@ -38,6 +42,8 @@ export function PhoneSlot({
   scrollTilt?: boolean;
   /** Primeira dobra: poster com prioridade de carregamento */
   priority?: boolean;
+  /** Adia a montagem do 3D (ex.: até terminar a animação de entrada do poster) */
+  hold3d?: boolean;
   sizes?: string;
   className?: string;
 }) {
@@ -89,20 +95,21 @@ export function PhoneSlot({
   );
 
   const list = posterScreens ?? [screen];
+  const { aspectClass, posterSize } = stages[stage];
   const showPoster = support !== "3d" || !ready;
 
   return (
-    <div ref={rootRef} className={`relative aspect-[3/5] ${className ?? ""}`}>
+    <div ref={rootRef} className={`relative ${aspectClass} ${className ?? ""}`}>
       {list.map((id) => {
         const current = id === screen;
         return (
           <Image
             key={id}
-            src={screens[id].poster}
+            src={posterFor(stage, id)}
             alt={current ? screens[id].alt : ""}
             aria-hidden={current ? undefined : true}
-            width={900}
-            height={1500}
+            width={posterSize[0]}
+            height={posterSize[1]}
             sizes={sizes}
             priority={priority && current}
             className={`absolute inset-0 h-full w-full object-contain transition-opacity duration-700 ease-out-power3 ${
@@ -112,7 +119,7 @@ export function PhoneSlot({
         );
       })}
 
-      {support === "3d" && <PhoneView screen={screen} motion={motionRef} onReady={() => setReady(true)} />}
+      {support === "3d" && !hold3d && <PhoneView stage={stage} screen={screen} motion={motionRef} onReady={() => setReady(true)} />}
     </div>
   );
 }

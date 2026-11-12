@@ -8,7 +8,6 @@ import { Box3, Group, Mesh, SRGBColorSpace, Vector3, type Material, type Texture
 import { ease } from "@/lib/tokens";
 
 import {
-  BASE_POSE,
   BODY_MATERIAL,
   PHONE_HEIGHT,
   PHONE_MODEL_URL,
@@ -17,6 +16,7 @@ import {
   SCREEN_TRANSITION,
   screenIds,
   screens,
+  type Pose,
   type ScreenId,
 } from "./phone-config";
 import { phoneStore, type PhoneMotion } from "./phone-store";
@@ -30,11 +30,14 @@ const damp = (current: number, target: number, lambda: number, dt: number) =>
 
 export function PhoneModel({
   screen,
+  pose,
   motion,
   interactive = false,
   onReady,
 }: {
   screen: ScreenId;
+  /** Pose de repouso do palco */
+  pose: Pose;
   /** Movimento ligado ao scroll (escrito pelo GSAP do slot) */
   motion?: RefObject<PhoneMotion>;
   /** Segue o mouse (só em ponteiros finos) */
@@ -93,19 +96,28 @@ export function PhoneModel({
 
   // Pose: repouso + scroll + mouse, amortecidos
   const group = useRef<Group>(null);
-  const current = useRef({ rx: BASE_POSE.rx, ry: BASE_POSE.ry, y: 0 });
+  const current = useRef({ rx: pose.rx, ry: pose.ry, y: 0 });
   const readyFired = useRef(false);
 
   useFrame((state, delta) => {
     const g = group.current;
     if (!g) return;
+    if (process.env.NODE_ENV === "development" && phoneStore.debugCamera) {
+      const dc = phoneStore.debugCamera;
+      const cam = state.camera as import("three").PerspectiveCamera;
+      if (dc.fov) cam.fov = dc.fov;
+      if (dc.position) cam.position.set(...dc.position);
+      cam.lookAt(...(dc.target ?? [0, 0, 0]));
+      cam.updateProjectionMatrix();
+    }
     const dt = Math.min(delta, 0.05);
     const m = motion?.current;
     const p = interactive ? phoneStore.pointer : { x: 0, y: 0 };
 
+    const base = process.env.NODE_ENV === "development" && phoneStore.debugPose ? { ...pose, ...phoneStore.debugPose } : pose;
     const target = {
-      rx: BASE_POSE.rx + (m?.rx ?? 0) + p.y * POINTER_TILT.rx,
-      ry: BASE_POSE.ry + (m?.ry ?? 0) + p.x * POINTER_TILT.ry,
+      rx: base.rx + (m?.rx ?? 0) + p.y * POINTER_TILT.rx,
+      ry: base.ry + (m?.ry ?? 0) + p.x * POINTER_TILT.ry,
       y: m?.y ?? 0,
     };
 
@@ -117,7 +129,7 @@ export function PhoneModel({
     }
 
     // No .glb a tela aponta para −Z: meia-volta em Y para encarar a câmera
-    g.rotation.set(c.rx, Math.PI + c.ry, BASE_POSE.rz);
+    g.rotation.set(c.rx, Math.PI + c.ry, base.rz);
     g.position.y = c.y;
     controller.setSheen(c.ry);
 

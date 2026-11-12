@@ -13,22 +13,18 @@ export const BODY_MATERIAL = "iPhone_Corpo";
 export const screens = {
   "ui-01": {
     texture: "/screens/ui-01.webp",
-    poster: "/posters/phone-ui-01.png",
     alt: "iPhone com o app VIAS na etapa 1 de 3, Necessidade: busca por Mamografia, atendimento pelo SUS e o botão Buscar unidades.",
   },
   "ui-02": {
     texture: "/screens/ui-02.webp",
-    poster: "/posters/phone-ui-02.png",
     alt: "iPhone com o app VIAS na etapa 2 de 3, Unidade: Unidade demonstrativa com mamógrafo cadastrado, fonte CNES. Demonstração, dados ilustrativos.",
   },
   "ui-03": {
     texture: "/screens/ui-03.webp",
-    poster: "/posters/phone-ui-03.png",
     alt: "iPhone com o app VIAS na etapa 3 de 3, Percurso: 28 minutos de ônibus mais caminhada até a Unidade demonstrativa. Demonstração, dados ilustrativos.",
   },
   "ui-04": {
     texture: "/screens/ui-04.webp",
-    poster: "/posters/phone-ui-04.png",
     alt: "iPhone com o app VIAS mostrando a acessibilidade no percurso: trechos não informados, parcial e informado. Demonstração, dados ilustrativos.",
   },
 } as const;
@@ -36,21 +32,55 @@ export const screens = {
 export type ScreenId = keyof typeof screens;
 export const screenIds = Object.keys(screens) as ScreenId[];
 
-/** Proporção do palco (largura / altura). Poster e View usam a mesma. */
-export const STAGE_ASPECT = 3 / 5;
-
-/** Câmera: quase frontal, levemente acima para a sombra de contato aparecer */
-export const CAMERA = {
-  fov: 20,
-  position: [0, 0.42, 7.4] as [number, number, number],
-  target: [0, -0.04, 0] as [number, number, number],
-};
-
 /** Altura do aparelho em unidades de cena */
 export const PHONE_HEIGHT = 2.1;
 
-/** Pose de repouso: poucos graus de rotação lateral (radianos) */
-export const BASE_POSE = { rx: 0.035, ry: -0.2, rz: 0 };
+export type Vec3 = [number, number, number];
+export type Pose = { rx: number; ry: number; rz: number };
+
+export type StageConfig = {
+  /** Classe de proporção do palco (largura / altura). Poster e View usam a mesma. */
+  aspectClass: string;
+  /** Câmera quase frontal, levemente acima para a sombra de contato aparecer */
+  camera: { fov: number; position: Vec3; target: Vec3 };
+  /** Pose de repouso (radianos) */
+  pose: Pose;
+  /** Prefixo dos posters deste palco em /public/posters */
+  posterPrefix: string;
+  /** Tamanho dos posters em px (mesma proporção do palco) */
+  posterSize: [number, number];
+};
+
+/**
+ * Palcos do iPhone. Cada um reproduz o enquadramento de uma referência.
+ * - default: genérico (3:5), poucos graus de rotação lateral
+ * - hero:    referência 02 — aparelho grande, inclinado para trás e para a
+ *            direita, mostrando a lateral direita (silhueta medida na imagem)
+ */
+export const stages = {
+  default: {
+    aspectClass: "aspect-[3/5]",
+    camera: { fov: 20, position: [0, 0.42, 7.4], target: [0, -0.04, 0] },
+    pose: { rx: 0.035, ry: -0.2, rz: 0 },
+    posterPrefix: "phone",
+    posterSize: [900, 1500],
+  },
+  hero: {
+    aspectClass: "aspect-[620/810]",
+    // Ajustado por medição contra a silhueta do aparelho na referência 02
+    // (erro médio ≈ 9,5u nas bordas): câmera próxima e grande-angular para o
+    // topo afunilar, inclinado para trás e para a direita
+    camera: { fov: 62, position: [0, 0.2, 1.95], target: [0, -0.02, 0] },
+    pose: { rx: -0.36, ry: -0.45, rz: 0.25 },
+    posterPrefix: "phone-hero",
+    posterSize: [930, 1215],
+  },
+} satisfies Record<string, StageConfig>;
+
+export type StageId = keyof typeof stages;
+
+export const posterFor = (stage: StageId, screen: ScreenId) =>
+  `/posters/${stages[stage].posterPrefix}-${screen}.png`;
 
 /** Amplitude da influência do mouse (radianos) */
 export const POINTER_TILT = { rx: 0.05, ry: 0.09 };

@@ -4,6 +4,7 @@ import Lenis from "lenis";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { navHeight } from "@/lib/nav-height";
 import { smoothScroll } from "@/lib/tokens";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
 
@@ -11,13 +12,6 @@ const LenisContext = createContext<Lenis | null>(null);
 
 /** Instância do Lenis (ou `null` com movimento reduzido / antes de montar). */
 export const useLenis = () => useContext(LenisContext);
-
-/** Altura da navbar fixa, lida do token CSS --spacing-nav. */
-function navOffset() {
-  const v = getComputedStyle(document.documentElement).getPropertyValue("--spacing-nav");
-  const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-  return v.trim().endsWith("rem") ? parseFloat(v) * rem : parseFloat(v) || 0;
-}
 
 /** Leva o foco ao destino da âncora, para teclado e leitores de tela. */
 function focusTarget(el: HTMLElement) {
@@ -90,7 +84,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
         });
       } else {
         // scrollTo por coordenada ignora o scroll-padding: desconta a navbar aqui
-        const top = target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY - navOffset();
+        const top = target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY - navHeight();
         window.scrollTo({ top });
         focusTarget(target);
       }

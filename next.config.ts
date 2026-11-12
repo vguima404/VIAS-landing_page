@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     // AVIF primeiro, WebP como fallback (spec §9)
     formats: ["image/avif", "image/webp"],
+    // 90: fundo do Hero (fotografia grande em primeiro plano)
+    qualities: [75, 90],
   },
   partialPrefetching: true,
   turbopack: {
