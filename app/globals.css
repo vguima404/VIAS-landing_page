@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/* ==========================================================================
+   VIAS — configuração do Tailwind
+   Este arquivo só define tokens (@theme) e utilitários da marca (@utility).
+   Todo estilo de componente é escrito com classes Tailwind no JSX.
+   Espelho dos tokens para JS (GSAP, shaders): lib/tokens.ts
+   ========================================================================== */
+
+@theme {
+  /* Paleta da marca */
+  --color-pinho: #123b35;
+  --color-rota: #2d7c60;
+  --color-lima: #d7f36a;
+  --color-papel: #f6f7f1;
+  --color-nevoa: #e9efe7;
+  --color-branco: #ffffff;
+  --color-grafite: #1a2925;
+  --color-salvia: #5b6d66;
+  --color-linha: #d5ded7;
+  --color-ardosia: #486f83;
+
+  /* Estados de acessibilidade (sempre com ícone + texto + cor) */
+  --color-informado: #2f6b4f;
+  --color-parcial: #a45d24;
+  --color-nao-informado: #5b6d66;
+
+  /* Texto secundário em fundo escuro (Sálvia falha AA sobre Pinho) */
+  --color-papel-suave: rgb(246 247 241 / 0.76);
+
+  /* Escala tipográfica fluida (referência: 1440 px) */
+  --text-display: clamp(2.75rem, 1.15rem + 4.6vw, 5.5rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.035em;
+
+  --text-h2: clamp(2.25rem, 1.25rem + 3vw, 4.25rem);
+  --text-h2--line-height: 1.02;
+  --text-h2--letter-spacing: -0.03em;
+
+  --text-h3: clamp(1.375rem, 1.05rem + 0.9vw, 1.75rem);
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.015em;
+
+  --text-lead: clamp(1.0625rem, 0.95rem + 0.4vw, 1.3125rem);
+  --text-lead--line-height: 1.55;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.4;
+  --text-label--letter-spacing: 0.18em;
+
+  /* Raios e sombras */
+  --radius-card: 1.25rem;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgb(18 59 53 / 0.06), 0 12px 32px -12px rgb(18 59 53 / 0.18);
+  --shadow-float: 0 2px 6px rgb(18 59 53 / 0.06), 0 28px 60px -24px rgb(18 59 53 / 0.32);
+
+  /* Easings (classes ease-*). Equivalentes GSAP em lib/tokens.ts */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-power3: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Layout */
+  --container-site: 90rem; /* 1440 px */
+  --spacing-gutter: clamp(1.25rem, 0.5rem + 3.2vw, 4.5rem);
+  --spacing-section: clamp(6rem, 3rem + 9vw, 11rem);
+  --spacing-nav: 4.75rem;
+
+  /* Animações (classes animate-*) */
+  --animate-node-pulse: node-pulse 1.1s var(--ease-out-expo) 1;
+
+  @keyframes node-pulse {
+    0% {
+      opacity: 0.55;
+      scale: 0.6;
+    }
+    100% {
+      opacity: 0;
+      scale: 2.2;
+    }
+  }
+}
+
+/* Fontes carregadas via next/font (variáveis aplicadas no <html>) */
+@theme inline {
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+/* Contêiner da página: 1440 px com respiro lateral fluido */
+@utility container-site {
+  @apply mx-auto w-full max-w-(--container-site) px-(--spacing-gutter);
+}
+
+/* Rótulo técnico: IBM Plex Mono, caixa alta, tracking aberto */
+@utility label-mono {
+  @apply font-mono text-label font-medium uppercase;
+}
