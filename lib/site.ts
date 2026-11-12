@@ -9,4 +9,14 @@ export const site = {
    * até existir a URL da demonstração.
    */
   demoHref: "#como-funciona",
+  /** "Conhecer o painel para gestores →" (CTA final): seção Para gestores */
+  gestoresHref: "#gestores",
+  /** "Privacidade" (footer): seção 08, Confiança e privacidade */
+  privacyHref: "#confianca",
+  /**
+   * "Contato" (footer).
+   * PROVISÓRIO (destino pendente): volta ao CTA final até existir uma página
+   * ou endereço de contato.
+   */
+  contactHref: "#comece",
 } as const;

@@ -54,7 +54,7 @@ export function NeedCard({ className = "" }: { className?: string }) {
 export function UnitCard({ className = "" }: { className?: string }) {
   return (
     <div aria-hidden="true" className={`${mobileUnit} ${card} u-h-205 u-w-392 ${className}`}>
-      {/* Foto da fachada (fornecida; placa removida para não contradizer "UBS Central") */}
+      {/* Foto da fachada (fornecida em 12/11; recorte na entrada da UBS) */}
       <div className="absolute u-top-7 u-left-7 u-h-191 u-w-173 overflow-hidden rounded-l-[calc(var(--u)*16)] rounded-r-[calc(var(--u)*3)] bg-ref-campo">
         <Image
           src="/images/como-funciona/04-unidade-fachada.webp"

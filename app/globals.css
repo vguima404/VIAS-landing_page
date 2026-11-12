@@ -125,6 +125,21 @@
   --color-ref-no-lima-08: #bcd327; /* nó / fio 01 (08) */
   --color-ref-no-verde-08: #2c9932; /* nó / fio 02 (08) */
   --color-ref-nota-texto-08: #20302d; /* descrição das anotações (08) */
+  --color-ref-fundo-09: #f3f1e5; /* painel claro do CTA final (09) */
+  --color-ref-tinta-09: #0d352e; /* título (09) */
+  --color-ref-texto-09: #1a312d; /* parágrafo (09) */
+  --color-ref-legenda-09: #344743; /* legendas dos botões (09) */
+  --color-ref-linha-09: #bdd515; /* Linha de Acesso, nó e ponto final (09) */
+  --color-ref-botao-09: #d7ed39; /* botão lima, lado esquerdo (09) */
+  --color-ref-botao-fim-09: #d4e75f; /* botão lima, lado direito (09) */
+  --color-ref-botao-texto-09: #19311b; /* texto do botão lima (09) */
+  --color-ref-contorno-09: #052a25; /* contorno e texto do botão de gestores (09) */
+  --color-ref-rodape-09: #0d342c; /* fundo do footer (09) */
+  --color-ref-rodape-texto-09: #d6ded7; /* slogan e links do footer (09) */
+  --color-ref-rodape-fino-09: #afbeb6; /* fonte de dados e copyright (09) */
+  --color-ref-divisor-09: #c8d6cd; /* fio do footer (09) */
+  --color-ref-marca-09: #2e5e4a; /* "VIAS" gigante (09) */
+  --color-ref-marca-sombra-09: #194136; /* triângulo escuro à esquerda do "VIAS" (09) */
 
   /* Escala tipográfica fluida (referência: 1440 px) */
   --text-display: clamp(2.75rem, 1.15rem + 4.6vw, 5.5rem);

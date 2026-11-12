@@ -21,6 +21,8 @@ const REFERENCES: Record<string, string> = {
   tecnologia: "06-inteligencia-integracao.png",
   gestores: "07-para-gestores.png",
   confianca: "08-confianca-privacidade.png",
+  // A referência 09 inclui o footer: a imagem desce além da seção, sobre ele
+  comece: "09-cta-final-footer.png",
 };
 
 type Box = { id: string; file: string; top: number; left: number; width: number };
