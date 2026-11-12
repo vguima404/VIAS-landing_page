@@ -175,3 +175,41 @@ export function AccessibilityIcon(props: IconProps) {
     </Base>
   );
 }
+
+/** Estação com elevador: cabine com pessoa e setas de subir/descer */
+export function ElevatorIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <rect x="3.5" y="3" width="11" height="18" rx="1.5" />
+      <circle cx="9" cy="7.2" r="1.5" />
+      <path d="M7 17.5v-4.2c0-1.1.9-2 2-2s2 .9 2 2v4.2M18 4.5 20.5 7M18 4.5 15.5 7M18 4.5v6M18 19.5 20.5 17M18 19.5 15.5 17M18 19.5v-6" />
+    </Base>
+  );
+}
+
+/** Triângulo de alerta: informação em falta */
+export function AlertTriangleIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M10.3 4.1 2.6 17.6A2 2 0 0 0 4.3 20.6h15.4a2 2 0 0 0 1.7-3L13.7 4.1a2 2 0 0 0-3.4 0Z" />
+      <path d="M12 9.5v4.5M12 17.2h.01" />
+    </Base>
+  );
+}
+
+export function CheckIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="m5.5 12.5 4 4 9-9" />
+    </Base>
+  );
+}
+
+/** Ponto de exclamação (dentro de um círculo de estado) */
+export function ExclamationIcon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 6v8M12 18.2h.01" />
+    </Base>
+  );
+}

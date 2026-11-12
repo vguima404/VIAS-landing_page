@@ -73,6 +73,25 @@
   --color-ref-cartao-texto: #12302b; /* textos dos cartões (04) */
   --color-ref-botao-04: #10463a; /* botão "Buscar unidades" (04) */
   --color-ref-sus: #5ba16d; /* selo SUS (04) */
+  --color-ref-fundo-05: #f5f5f0; /* fundo claro (05) */
+  --color-ref-tinta-05: #032119; /* título (05) */
+  --color-ref-texto-05: #051614; /* parágrafo (05) */
+  --color-ref-lista-05: #0a1b1a; /* itens da lista (05) */
+  --color-ref-icone-05: #021c17; /* ícones da lista (05) */
+  --color-ref-anel-05: #123a32; /* anel escuro dos ícones (05) */
+  --color-ref-anel-claro-05: #cfcfcb; /* anel claro dos ícones (05) */
+  --color-ref-trilho-05: #d3d4d0; /* trilho vertical da lista (05) */
+  --color-ref-no-lima-05: #aac701; /* nó do trilho (05) */
+  --color-ref-cartao-05: #ecece7; /* cartão "Acessibilidade na rota" (05) */
+  --color-ref-cartao-titulo-05: #04120f;
+  --color-ref-cartao-texto-05: #0b1917;
+  --color-ref-divisor-05: #dadad5; /* divisores do cartão (05) */
+  --color-ref-check-05: #0c3725; /* círculo do check (05) */
+  --color-ref-alerta-05: #dab40b; /* círculo de alerta (05) */
+  --color-ref-botao-05: #13382e; /* botão "Ver rotas alternativas" (05) */
+  --color-ref-rota-05: #c9dc1f; /* rota lima no mapa (05) */
+  --color-ref-pin-05: #b2d204; /* pin (05) */
+  --color-ref-pin-centro-05: #052319;
 
   /* Escala tipográfica fluida (referência: 1440 px) */
   --text-display: clamp(2.75rem, 1.15rem + 4.6vw, 5.5rem);

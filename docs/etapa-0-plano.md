@@ -196,8 +196,8 @@ Linha de progresso: um nó por seção (02–09) e portal no fim. Escala da 07 (
 | C1 | 04 Como funciona | **Recebido em 12/11:** fundo completo da seção (protagonista, mapa claro e formas verde-pinho), 1672×941, usado pixel a pixel. Arquivo: `public/images/como-funciona/04-como-fundo.webp`. | ✓ |
 | C2 | 04 Como funciona | Opcional, para parallax: protagonista recortada, no mesmo quadro | PNG com alpha, mesmo tamanho do C1 |
 | C3 | 04 Como funciona | **Recebido em 12/11.** Recorte vertical da fachada (portão e entrada) com a placa removida, para não contradizer "UBS Central". Arquivo: `public/images/como-funciona/04-unidade-fachada.webp`. | ✓ |
-| D1 | 05 Acessibilidade | Fundo: estação, sem a pessoa | PNG, 3344×1882 + sobra (ver regras) |
-| D2 | 05 Acessibilidade | Homem em cadeira de rodas recortado | PNG com alpha, mesmo canvas |
+| D1 | 05 Acessibilidade | **Recebido em 12/11:** fundo completo da seção (homem na estação, área clara e faixas verde-pinho com mapa), 1672×941, usado pixel a pixel. Arquivo: `public/images/acessibilidade/05-acessibilidade-fundo.webp`. A onda verde sobe mais que na referência (último item da lista ganhou halo claro) e o joelho cobre o início da rota (rota começa em x 1432). | ✓ |
+| D2 | 05 Acessibilidade | Opcional, para parallax: homem em cadeira de rodas recortado, no mesmo quadro do D1 | PNG com alpha, 1672×941 |
 | E1–E4 | 06 Inteligência | As 4 placas **em perspectiva, exatamente como na referência**, cada uma num PNG separado com fundo transparente e no mesmo canvas (sobrepostas, recompõem a imagem): 01 saúde, 02 mobilidade, 03 território, 04 base escura com o alvo. Sem pins, linha lima nem cartões (eu desenho em SVG/HTML). | PNG com alpha, 3344×1882 (2× a referência) |
 | E5 | 06 Inteligência | Mapa do território da base (terreno verde que some no Papel) | PNG, 3200×1400 |
 | F1 | 07 Gestores | Fundo aéreo escuro (verde-pinho dessaturado) | PNG, 3344×1882 + sobra (ver regras) |

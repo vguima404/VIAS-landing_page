@@ -17,6 +17,7 @@ const REFERENCES: Record<string, string> = {
   inicio: "02-hero.png",
   problema: "03-o-problema.png",
   "como-funciona": "04-como-funciona.png",
+  acessibilidade: "05-acessibilidade.png",
 };
 
 type Box = { id: string; file: string; top: number; left: number; width: number };

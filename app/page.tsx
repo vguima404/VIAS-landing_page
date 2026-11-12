@@ -1,5 +1,6 @@
 import { AccessLine } from "@/components/access-line";
 import { Logo } from "@/components/brand/logo";
+import { Acessibilidade } from "@/components/sections/acessibilidade/acessibilidade";
 import { ComoFunciona } from "@/components/sections/como-funciona/como-funciona";
 import { Hero } from "@/components/sections/hero/hero";
 import { Problema } from "@/components/sections/problema/problema";
@@ -7,7 +8,8 @@ import { SectionShell } from "@/components/sections/section-shell";
 
 /**
  * Página única do VIAS.
- * 02 Hero (Etapa 3.1), 03 O problema (Etapa 4) e 04 Como funciona (Etapa 5): definitivos.
+ * 02 Hero (Etapa 3.1), 03 O problema (Etapa 4), 04 Como funciona (Etapa 5) e
+ * 05 Acessibilidade (Etapa 6): definitivos.
  * Demais seções: estrutura provisória com a Linha de Acesso de cada ato (Etapa 1).
  */
 export default function Home() {
@@ -20,25 +22,7 @@ export default function Home() {
 
         <ComoFunciona />
 
-        {/* 05 · Acessibilidade — variações contínua / tracejada */}
-        <SectionShell id="acessibilidade" heading="O caminho também precisa funcionar para quem percorre." stage="Etapa 6">
-          <AccessLine
-            width={1200}
-            height={160}
-            track
-            segments={[
-              { d: "M30 110 C 180 110, 260 60, 400 60", from: 0, to: 0.33 },
-              { d: "M400 60 C 540 60, 640 120, 800 110", variant: "dashed", from: 0.33, to: 0.66 },
-              { d: "M800 110 C 960 100, 1060 50, 1170 50", from: 0.66, to: 1 },
-            ]}
-            nodes={[
-              { x: 30, y: 110, kind: "origin" },
-              { x: 400, y: 60, kind: "junction" },
-              { x: 800, y: 110, kind: "junction" },
-              { x: 1170, y: 50, kind: "access" },
-            ]}
-          />
-        </SectionShell>
+        <Acessibilidade />
 
         {/* 06 · Inteligência — atravessa camadas empilhadas */}
         <SectionShell id="tecnologia" heading="Conectar dados é o que transforma localização em acesso." stage="Etapa 7">
