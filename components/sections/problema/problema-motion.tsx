@@ -24,42 +24,50 @@ export function ProblemaMotion({ children, ...props }: ComponentPropsWithoutRef<
       const q = gsap.utils.selector(ref);
       const show = { opacity: 1, y: 0 };
 
+      // Entrada principal: dispara com a seção já à vista (topo a 55% da tela),
+      // para o movimento ser percebido; reverte ao voltar e repete ao descer
       gsap
         .timeline({
           defaults: { ease: ease.expo, duration: duration.slow },
-          scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
+          scrollTrigger: { trigger: ref.current, start: "top 55%", toggleActions: "play none none reverse" },
         })
-        .fromTo(q('[data-problema="photo"]'), { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 1.6, ease: "power2.out" }, 0)
-        .fromTo(q('[data-problema="line"]'), { opacity: 1, yPercent: 110 }, { yPercent: 0, stagger: stagger.base, duration: 1.1 }, 0.1)
-        .fromTo(q('[data-problema="lead"]'), { opacity: 0, y: 16 }, show, 0.5)
-        .fromTo(q('[data-problema="streets"]'), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1.4, ease: "power2.out" }, 0.4);
+        // Foto: efeito sutil, só um leve fade com zoom-out discreto
+        .fromTo(q('[data-problema="photo"]'), { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" }, 0)
+        .fromTo(q('[data-problema="line"]'), { opacity: 1, yPercent: 115 }, { yPercent: 0, stagger: 0.12, duration: 1.2 }, 0.15)
+        .fromTo(q('[data-problema="lead"]'), { opacity: 0, y: 48 }, { ...show, duration: 1.1 }, 0.6)
+        .fromTo(q('[data-problema="streets"]'), { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: 1.6, ease: "power3.out" }, 0.5);
 
-      // Perguntas, uma a uma
+      // Perguntas, uma a uma, entrando pela direita quando as próprias pílulas
+      // chegam à tela (o gatilho é a 1ª pílula: a <ul> começa no topo da seção).
+      // Ao voltar para cima, saem; ao descer de novo, entram outra vez.
+      const questions = q('[data-problema="question"]');
       gsap.fromTo(
-        q('[data-problema="question"]'),
-        { opacity: 0, x: 40, scale: 0.96 },
+        questions,
+        { opacity: 0, x: 240, scale: 0.85, rotate: 4 },
         {
           opacity: 1,
           x: 0,
           scale: 1,
-          duration: duration.base + 0.2,
-          ease: ease.out,
-          stagger: 0.22,
-          scrollTrigger: { trigger: q('[data-problema="questions"]')[0], start: "top 80%", once: true },
+          rotate: 0,
+          duration: 1.2,
+          ease: ease.expo,
+          stagger: 0.18,
+          scrollTrigger: { trigger: questions[0], start: "top 88%", toggleActions: "play none none reverse" },
         },
       );
 
       // Pin do minimapa
       gsap.fromTo(
         q('[data-problema="pin"]'),
-        { opacity: 0, scale: 0.5 },
+        { opacity: 0, y: -90, scale: 0.6 },
         {
           opacity: 1,
+          y: 0,
           scale: 1,
           transformOrigin: "50% 100%",
-          duration: 0.7,
-          ease: "back.out(2)",
-          scrollTrigger: { trigger: ref.current, start: "60% 80%", once: true },
+          duration: 1,
+          ease: "bounce.out",
+          scrollTrigger: { trigger: ref.current, start: "top 30%", toggleActions: "play none none reverse" },
         },
       );
 

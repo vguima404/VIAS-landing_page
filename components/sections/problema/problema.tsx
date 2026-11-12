@@ -88,22 +88,31 @@ export function Problema() {
               <li
                 key={text.join(" ")}
                 data-problema="question"
-                className={[
-                  "flex items-center gap-3 rounded-pill bg-ref-pilula px-4 py-3 text-[0.9375rem] leading-tight text-ref-pilula-texto shadow-[0_8px_24px_-12px_rgb(0_0_0/0.35)]",
-                  "xl:absolute xl:u-left-1290 xl:u-w-287 xl:u-gap-24 xl:py-0 xl:u-pl-30 xl:u-text-21 xl:u-leading-24",
-                  box,
-                  hidden,
-                ].join(" ")}
+                className={`xl:absolute xl:u-left-1290 xl:u-w-287 ${box} ${hidden}`}
               >
-                <Icon className="size-6 shrink-0 text-ref-pilula-icone xl:u-size-37" strokeWidth={1.5} />
-                <span>
-                  {text[0]}
-                  {text[1] && (
-                    <>
-                      <br className="hidden xl:inline" /> {text[1]}
-                    </>
-                  )}
-                </span>
+                {/*
+                  Camada visual separada: o GSAP anima a entrada no <li> (e grava
+                  translate:none nele), o hover move só esta camada
+                */}
+                <div
+                  className={[
+                    "group/pill flex h-full items-center gap-3 rounded-pill bg-ref-pilula px-4 py-3 text-[0.9375rem] leading-tight text-ref-pilula-texto shadow-[0_8px_24px_-12px_rgb(0_0_0/0.35)]",
+                    // Hover: sobe levemente, clareia e ganha sombra; o ícone vira verde-rota
+                    "cursor-default transition-[translate,background-color,box-shadow] duration-300 ease-out-expo",
+                    "hover:-translate-y-1 hover:bg-white hover:shadow-[0_14px_32px_-12px_rgb(0_0_0/0.45)] motion-reduce:hover:translate-y-0",
+                    "xl:u-gap-24 xl:py-0 xl:u-pl-30 xl:u-text-21 xl:u-leading-24",
+                  ].join(" ")}
+                >
+                  <Icon className="size-6 shrink-0 text-ref-pilula-icone transition-colors duration-300 group-hover/pill:text-rota xl:u-size-37" strokeWidth={1.5} />
+                  <span>
+                    {text[0]}
+                    {text[1] && (
+                      <>
+                        <br className="hidden xl:inline" /> {text[1]}
+                      </>
+                    )}
+                  </span>
+                </div>
               </li>
             ))}
           </ul>
@@ -113,10 +122,11 @@ export function Problema() {
       {/* ------------------------------------------------------------------ */}
       {/* Texto                                                                */}
       {/* ------------------------------------------------------------------ */}
-      <div className="container-site relative z-10 order-1 mb-12 xl:absolute xl:inset-y-0 xl:hx-left-0 xl:mb-0 xl:u-w-1672 xl:max-w-none xl:p-0">
+      {/* No desktop a camada de texto cobre o quadro: não pode capturar o mouse das pílulas */}
+      <div className="container-site relative z-10 order-1 mb-12 xl:pointer-events-none xl:absolute xl:inset-y-0 xl:hx-left-0 xl:mb-0 xl:u-w-1672 xl:max-w-none xl:p-0">
         <h2
           id="problema-titulo"
-          className="flex flex-col font-display text-[clamp(2.5rem,1.4rem+4.6vw,4.25rem)] leading-[0.9] font-bold tracking-[-0.035em] text-ref-tinta-03 xl:absolute xl:u-top-192 xl:u-left-68 xl:u-text-84 xl:u-leading-75"
+          className="pointer-events-auto flex flex-col font-display text-[clamp(2.5rem,1.4rem+4.6vw,4.25rem)] leading-[0.9] font-bold tracking-[-0.035em] text-ref-tinta-03 xl:absolute xl:u-top-192 xl:u-left-68 xl:u-text-84 xl:u-leading-75"
         >
           {titleLines.map((line) => (
             <span key={line} className="-my-[0.12em] block overflow-hidden py-[0.12em]">
@@ -129,7 +139,7 @@ export function Problema() {
 
         <p
           data-problema="lead"
-          className={`mt-6 max-w-[34rem] text-[1.0625rem] leading-[1.45] tracking-[-0.015em] text-ref-texto-03 xl:absolute xl:u-top-522 xl:u-left-69 xl:tracking-normal xl:mt-0 xl:max-w-none xl:u-text-23.5 xl:u-leading-32.5 ${hidden}`}
+          className={`pointer-events-auto mt-6 max-w-[34rem] text-[1.0625rem] leading-[1.45] tracking-[-0.015em] text-ref-texto-03 xl:absolute xl:u-top-522 xl:u-left-69 xl:tracking-normal xl:mt-0 xl:max-w-none xl:u-text-23.5 xl:u-leading-32.5 ${hidden}`}
         >
           Saber onde existe o serviço, se a unidade
           <br className="hidden xl:inline" /> atende à sua necessidade e como chegar até ela

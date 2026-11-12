@@ -45,7 +45,7 @@ export function ProblemaMap() {
         height={941}
         stretch
         className="absolute! inset-0"
-        mode={{ type: "scrub", start: "top 85%", end: "bottom 75%" }}
+        mode={{ type: "scrub", start: "top 35%", end: "bottom 95%" }}
         strokeWidth={2.4}
         segments={[
           {
