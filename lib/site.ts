@@ -4,11 +4,10 @@
  */
 export const site = {
   /**
-   * "Explorar demonstração →" (navbar, Hero, CTA final).
-   * PROVISÓRIO (decisão D1 pendente): leva à seção Como funciona
-   * até existir a URL da demonstração.
+   * "Explorar demonstração →" (navbar, menu mobile, Hero e CTA final):
+   * a demonstração publicada.
    */
-  demoHref: "#como-funciona",
+  demoHref: "https://vias-jet.vercel.app",
   /** "Conhecer o painel para gestores →" (CTA final): seção Para gestores */
   gestoresHref: "#gestores",
   /** "Privacidade" (footer): seção 08, Confiança e privacidade */
