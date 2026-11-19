@@ -2,7 +2,8 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 /**
- * SÓ EM DESENVOLVIMENTO: serve as imagens de referencias/landing para a
+ * SÓ EM DESENVOLVIMENTO: serve as imagens de referencias/landing e
+ * referencias/gestor para a
  * sobreposição de conferência (?ref). Em produção responde 404, e as
  * referências nunca são publicadas.
  */
@@ -12,10 +13,14 @@ export async function GET(_request: Request, ctx: RouteContext<"/dev-ref/[file]"
   const { file } = await ctx.params;
   if (!/^\d{2}-[a-z-]+\.png$/.test(file)) return new Response("Not found", { status: 404 });
 
-  try {
-    const data = await readFile(path.join(process.cwd(), "referencias", "landing", file));
-    return new Response(new Uint8Array(data), { headers: { "content-type": "image/png", "cache-control": "no-store" } });
-  } catch {
-    return new Response("Not found", { status: 404 });
+  // Landing (02–09) e Painel do gestor (10)
+  for (const folder of ["landing", "gestor"]) {
+    try {
+      const data = await readFile(path.join(process.cwd(), "referencias", folder, file));
+      return new Response(new Uint8Array(data), { headers: { "content-type": "image/png", "cache-control": "no-store" } });
+    } catch {
+      // tenta a próxima pasta
+    }
   }
+  return new Response("Not found", { status: 404 });
 }

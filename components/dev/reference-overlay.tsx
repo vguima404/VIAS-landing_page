@@ -23,6 +23,8 @@ const REFERENCES: Record<string, string> = {
   confianca: "08-confianca-privacidade.png",
   // A referência 09 inclui o footer: a imagem desce além da seção, sobre ele
   comece: "09-cta-final-footer.png",
+  // Painel do gestor (/painel): a referência cobre a tela inteira
+  "painel-gestor": "10-painel-gestor.png",
 };
 
 type Box = { id: string; file: string; top: number; left: number; width: number };

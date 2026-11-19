@@ -8,8 +8,8 @@ export const site = {
    * a demonstração publicada.
    */
   demoHref: "https://vias-jet.vercel.app",
-  /** "Conhecer o painel para gestores →" (CTA final): seção Para gestores */
-  gestoresHref: "#gestores",
+  /** "Conhecer o painel para gestores →" (CTA final): o Painel do gestor */
+  gestoresHref: "/painel",
   /** "Privacidade" (footer): seção 08, Confiança e privacidade */
   privacyHref: "#confianca",
   /**

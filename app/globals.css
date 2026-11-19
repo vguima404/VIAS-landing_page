@@ -140,6 +140,46 @@
   --color-ref-divisor-09: #c8d6cd; /* fio do footer (09) */
   --color-ref-marca-09: #2e5e4a; /* "VIAS" gigante (09) */
   --color-ref-marca-sombra-09: #194136; /* triângulo escuro à esquerda do "VIAS" (09) */
+  /* Painel do gestor (10, referencias/gestor/10-painel-gestor.png) */
+  --color-ref-fundo-10: #f6f9f3; /* fundo da área de conteúdo */
+  --color-ref-lateral-10: #0e3b30; /* barra lateral */
+  --color-ref-rodape-10: #08372e; /* faixa inferior */
+  --color-ref-rodape-texto-10: #cae9e2;
+  --color-ref-rodape-icone-10: #a0d0c2;
+  --color-ref-pin-claro-10: #7ece82; /* pin da logo, metade clara */
+  --color-ref-pin-escuro-10: #358661; /* pin da logo, metade escura */
+  --color-ref-pin-cruz-10: #064a30;
+  --color-ref-ativo-10: #18624b; /* item ativo do menu */
+  --color-ref-ativo-borda-10: #9ddb9f;
+  --color-ref-nav-texto-10: #e7fdf9;
+  --color-ref-tinta-10: #03090d; /* título e números */
+  --color-ref-texto-10: #414a4b; /* subtítulo */
+  --color-ref-destaque-10: #1e7f5c; /* traço sob o subtítulo */
+  --color-ref-rotulo-10: #0e151a; /* rótulos dos indicadores */
+  --color-ref-circulo-10: #e1f3e6; /* círculo dos ícones */
+  --color-ref-icone-10: #08573e; /* ícones dos indicadores */
+  --color-ref-verde-10: #013326; /* "658 (60%)" e período */
+  --color-ref-suave-10: #515557; /* "Não atendem" */
+  --color-ref-fio-10: #e3e8e6; /* fio do cartão SUS */
+  --color-ref-botao-10: #e5f5e7; /* botão "Como cada indicador…" */
+  --color-ref-botao-borda-10: #c3e4c9;
+  --color-ref-botao-texto-10: #0e2b21;
+  --color-ref-barra-1-10: #136950; /* barras e rosca, do mais escuro ao mais claro */
+  --color-ref-barra-2-10: #3b916e;
+  --color-ref-barra-3-10: #8ad37b;
+  --color-ref-barra-4-10: #ceeab8;
+  --color-ref-valor-10: #052a20; /* valores sobre as barras */
+  --color-ref-eixo-10: #1d2729; /* rótulos dos eixos */
+  --color-ref-grade-10: #edf0ed; /* linhas de grade */
+  --color-ref-base-10: #3d5454; /* linha de base do gráfico */
+  --color-ref-alerta-fundo-10: #fdefd2; /* cartão "Acessibilidade física" */
+  --color-ref-alerta-borda-10: #f3dcae;
+  --color-ref-alerta-titulo-10: #5a3100;
+  --color-ref-alerta-icone-10: #b38331;
+  --color-ref-alerta-texto-10: #51340f;
+  --color-ref-alerta-fio-10: #eedeb8;
+  --color-ref-pop-texto-10: #5d5f61; /* textos do popover */
+  --color-ref-pop-link-10: #1c4f3e;
 
   /* Escala tipográfica fluida (referência: 1440 px) */
   --text-display: clamp(2.75rem, 1.15rem + 4.6vw, 5.5rem);
@@ -180,6 +220,31 @@
 
   /* Animações (classes animate-*) */
   --animate-node-pulse: node-pulse 1.1s var(--ease-out-expo) 1;
+  --animate-pop-in: pop-in 0.45s var(--ease-out-expo) both;
+  --animate-float: float 4.5s var(--ease-in-out-soft) infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      translate: 0 0;
+    }
+    50% {
+      translate: 0 -5px;
+    }
+  }
+
+  @keyframes pop-in {
+    0% {
+      opacity: 0;
+      scale: 0.92;
+      translate: 0 -6px;
+    }
+    100% {
+      opacity: 1;
+      scale: 1;
+      translate: 0 0;
+    }
+  }
 
   @keyframes node-pulse {
     0% {
@@ -198,6 +263,8 @@
   --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+  /* Painel do gestor: Inter Tight (a mais próxima das larguras da referência 10) */
+  --font-painel: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Contêiner da página: 1440 px com respiro lateral fluido */
@@ -267,6 +334,9 @@
 @utility u-top-* {
   top: calc(var(--u) * --value(number));
 }
+@utility -u-top-* {
+  top: calc(var(--u) * --value(number) * -1);
+}
 @utility u-bottom-* {
   bottom: calc(var(--u) * --value(number));
 }
@@ -306,4 +376,22 @@
 }
 @utility u-border-* {
   border-width: calc(var(--u) * --value(number));
+}
+@utility u-border-b-* {
+  border-bottom-width: calc(var(--u) * --value(number));
+}
+@utility u-border-l-* {
+  border-left-width: calc(var(--u) * --value(number));
+}
+@utility u-rounded-* {
+  border-radius: calc(var(--u) * --value(number));
+}
+@utility u-ml-* {
+  margin-left: calc(var(--u) * --value(number));
+}
+@utility u-mb-* {
+  margin-bottom: calc(var(--u) * --value(number));
+}
+@utility u-pt-* {
+  padding-top: calc(var(--u) * --value(number));
 }
