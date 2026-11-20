@@ -120,7 +120,10 @@ export function Hero() {
 
           <a
             data-hero="cta"
-            href="#como-funciona"
+            href={site.pitchHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Conheça o VIAS: assistir ao vídeo no YouTube (abre em nova aba)"
             className={`group/play inline-flex items-center gap-4 text-[0.9375rem] font-medium whitespace-nowrap text-ref-secundario xl:u-gap-19 xl:u-text-17 ${hidden}`}
           >
             <span className="grid size-11 place-items-center rounded-full border-2 border-ref-secundario transition-[background-color,color,scale] duration-300 group-hover/play:scale-105 group-hover/play:bg-ref-secundario group-hover/play:text-papel xl:u-size-43 xl:u-border-2">

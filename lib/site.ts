@@ -8,6 +8,8 @@ export const site = {
    * a demonstração publicada.
    */
   demoHref: "https://vias-jet.vercel.app",
+  /** "Conheça o VIAS" (Hero, botão de play): o vídeo pitch no YouTube */
+  pitchHref: "https://youtu.be/YSqMlLNoc98",
   /** "Conhecer o painel para gestores →" (CTA final): o Painel do gestor */
   gestoresHref: "/painel",
   /** "Privacidade" (footer): seção 08, Confiança e privacidade */
